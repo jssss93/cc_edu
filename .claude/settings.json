@@ -56,6 +56,10 @@
           {
             "type": "command",
             "command": "/Users/jongsu/git/js_project/cc_edu/.claude/hooks/pre-destroy-guard.sh"
+          },
+          {
+            "type": "command",
+            "command": "/Users/jongsu/git/js_project/cc_edu/.claude/hooks/pre-commit-review.sh"
           }
         ]
       }
