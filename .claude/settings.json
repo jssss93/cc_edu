@@ -48,5 +48,28 @@
       "Bash(az group delete *)"
     ]
   },
-  "hooks": {}
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/jongsu/git/js_project/cc_edu/.claude/hooks/pre-destroy-guard.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/jongsu/git/js_project/cc_edu/.claude/hooks/post-apply-snapshot.sh"
+          }
+        ]
+      }
+    ]
+  }
 }
