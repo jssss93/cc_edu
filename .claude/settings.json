@@ -48,16 +48,6 @@
       "Bash(az group delete *)"
     ]
   },
-  "extraKnownMarketplaces": {
-    "hashicorp": {
-      "source": "github",
-      "repo": "hashicorp/agent-skills"
-    }
-  },
-  "enabledPlugins": {
-    "terraform-code-generation@hashicorp": true,
-    "terraform-module-generation@hashicorp": true
-  },
   "hooks": {
     "PreToolUse": [
       {
