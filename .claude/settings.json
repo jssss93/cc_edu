@@ -70,6 +70,16 @@
           }
         ]
       }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/jongsu/git/js_project/cc_edu/.claude/hooks/notify-on-stop.sh"
+          }
+        ]
+      }
     ]
   }
 }
