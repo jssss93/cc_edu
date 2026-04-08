@@ -69,6 +69,15 @@
             "command": "/Users/jongsu/git/js_project/cc_edu/.claude/hooks/post-apply-snapshot.sh"
           }
         ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/jongsu/git/js_project/cc_edu/.claude/hooks/post-tf-edit-review.sh"
+          }
+        ]
       }
     ],
     "Stop": [
