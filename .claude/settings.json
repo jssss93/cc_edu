@@ -1,0 +1,52 @@
+{
+  "defaultMode": "acceptEdits",
+  "model": "claude-sonnet-4-6",
+  "autoMemoryEnabled": true,
+  "permissions": {
+    "allow": [
+      "Read",
+      "Write",
+      "Bash(terraform fmt*)",
+      "Bash(terraform init*)",
+      "Bash(terraform plan*)",
+      "Bash(terraform validate*)",
+      "Bash(terraform state*)",
+      "Bash(terraform output*)",
+      "Bash(terraform apply*)",
+      "Bash(terraform destroy*)",
+      "mcp__terraform__terraform_apply",
+      "mcp__terraform__terraform_destroy",
+      "Bash(az *)",
+      "Bash(git *)",
+      "Bash(tflint *)",
+      "Bash(checkov *)",
+      "mcp__terraform__terraform_plan",
+      "mcp__terraform__terraform_validate",
+      "mcp__terraform__terraform_fmt",
+      "mcp__terraform__terraform_state_list",
+      "mcp__terraform__terraform_state_show",
+      "mcp__terraform__terraform_output",
+      "mcp__terraform__registry_search",
+      "mcp__terraform__registry_module_details",
+      "mcp__azure__group_list",
+      "mcp__azure__group_resource_list",
+      "mcp__azure__pricing",
+      "mcp__azure__subscription_list",
+      "mcp__azure__monitor",
+      "mcp__azure__advisor",
+      "mcp__azure__resourcehealth",
+      "mcp__github__get_file_contents",
+      "mcp__github__create_pull_request",
+      "mcp__github__create_branch",
+      "mcp__github__push_files",
+      "mcp__miro__create_board_item",
+      "mcp__miro__update_board_item",
+      "mcp__miro__get_board_items"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(az group delete *)"
+    ]
+  },
+  "hooks": {}
+}
