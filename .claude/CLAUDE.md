@@ -1,0 +1,29 @@
+# Claude Code 설정 구조
+
+```
+.claude/
+├── settings.json                  # 권한, 훅, 모델 설정
+├── rules/
+│   ├── azure.md                   # Azure 인프라 규칙 (명명, 하드코딩 금지 등)
+│   ├── terraform.md               # Terraform 작업 규칙 (fmt, checkov, plan 순서)
+│   └── mcp.md                     # MCP 활용 규칙
+├── agents/
+│   ├── azure-validator/           # 배포 후 Azure 리소스 상태 검증
+│   ├── cost-optimizer/            # SKU/크기 최적화 방안 분석
+│   ├── plan-validator/            # plan 결과 → 검증 체크리스트 생성
+│   └── terraform-reviewer/        # tf 코드 리뷰 및 변경 영향도 분석
+├── skills/
+│   ├── tf-plan/                   # /tf-plan     : fmt→checkov→plan→비용분석
+│   ├── tf-apply/                  # /tf-apply    : staleness 체크→apply→검증
+│   ├── tf-destroy/                # /tf-destroy  : 다중 확인 후 destroy
+│   ├── tf-init/                   # /tf-init     : 초기화 및 백엔드 설정
+│   ├── tf-validate/               # /tf-validate : fmt+tflint+checkov 빠른 검증
+│   ├── miro-update/               # /miro-update : Miro 다이어그램 자동 생성
+│   └── env-diff/                  # /env-diff    : 환경 간 리소스 차이 비교
+├── hooks/
+│   ├── pre-destroy-guard.sh       # destroy 명령 실행 전 차단 가드
+│   ├── post-apply-snapshot.sh     # apply 성공 후 state 스냅샷 저장
+│   ├── post-tf-edit-review.sh     # .tf 파일 편집 후 리뷰 트리거
+│   └── notify-on-stop.sh          # Claude 응답 완료 시 알림
+└── snapshots/                     # state 스냅샷 저장소 (gitignore)
+```

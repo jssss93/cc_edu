@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "terraform": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "terraform-mcp-server"],
+      "env": {
+        "TF_WORKSPACE_PATH": "${PWD}",
+        "TF_LOG": "WARN"
+      }
+    },
+    "azure": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@azure/mcp@latest", "server", "start"],
+      "env": {}
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    },
+    "miro": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@mirohq/mcp-server"],
+      "env": {
+        "MIRO_ACCESS_TOKEN": "${MIRO_ACCESS_TOKEN}",
+        "MIRO_BOARD_ID": "${MIRO_BOARD_ID}"
+      }
+    }
+  }
+}
