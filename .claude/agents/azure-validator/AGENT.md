@@ -14,7 +14,7 @@ maxTurns: 15
 
 검증 시작 전 **반드시** 아래 경로의 체크리스트 파일 존재 여부를 확인한다:
 ```
-/Users/jongsu/git/js_project/cc_edu/.claude/snapshots/validation-checklist-{env}.json
+.claude/snapshots/validation-checklist-{env}.json
 ```
 
 - **파일 존재 시**: 파일을 읽어 `validation_items` 배열의 항목만 검증한다. P0 → P1 → P2 순서로 실행. 고정 6단계 절차 대신 이 목록을 기준으로 동작한다.

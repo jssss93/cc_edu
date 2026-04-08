@@ -8,7 +8,7 @@ allowed-tools: Bash, Read
 Terraform state를 기준으로 환경 간 리소스 구성 차이를 비교한다.
 인수가 없으면 dev/staging/prod 전체 비교(all)를 수행한다.
 
-환경 디렉토리: `/Users/jongsu/git/js_project/cc_edu/terraform/environments/{env}`
+환경 디렉토리: `terraform/environments/{env}`
 
 1. **각 환경 state 조회**
    - `terraform -chdir=.../{env} state list 2>/dev/null` 로 리소스 목록 수집

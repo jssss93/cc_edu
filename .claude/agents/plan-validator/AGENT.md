@@ -52,7 +52,7 @@ destroy/replace 항목은 위험 플래그(`danger: true`)로 표시한다.
 
 ### 3단계: JSON 파일 생성
 
-아래 스키마로 `/Users/jongsu/git/js_project/cc_edu/.claude/snapshots/validation-checklist-{env}.json` 파일을 생성(또는 덮어쓰기)한다.
+아래 스키마로 `.claude/snapshots/validation-checklist-{env}.json` 파일을 생성(또는 덮어쓰기)한다.
 
 ```json
 {
