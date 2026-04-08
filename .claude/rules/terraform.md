@@ -4,7 +4,10 @@
   1. **fmt 검사**: `terraform fmt -recursive -list=true` 실행
      - 문제 없으면: "✅ terraform fmt 검사 통과" 보고
      - 문제 있으면: 수정된 파일 목록을 보고하고 `terraform fmt -recursive`로 자동 수정
-  2. **Checkov 보안 검사**: `checkov -d . --framework terraform --quiet` 실행
+  2. **validate 검사**: `terraform validate` 실행
+     - 통과: "✅ terraform validate 통과" 보고
+     - 실패: 오류 메시지 보고 후 중단
+  3. **Checkov 보안 검사**: `checkov -d . --framework terraform --quiet` 실행
      - Checkov 미설치 시: "⚠️ Checkov 미설치 - 보안 검사 생략 (pip install checkov 로 설치 가능)" 보고 후 계속 진행
      - 검사 통과: "✅ Checkov 보안 검사 통과" 보고
      - 검사 실패: FAILED 항목 목록 보고 후 사용자에게 계속 진행 여부 확인
