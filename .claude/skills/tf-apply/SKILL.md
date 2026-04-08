@@ -17,4 +17,7 @@ $ARGUMENTS 환경에 Terraform 배포를 실행한다.
    - 에이전트에게 환경명($ARGUMENTS)과 Terraform state 리소스 목록을 전달
    - 에이전트 검증 결과(리소스 상태, NSG, VNet Peering, 태그 등)를 사용자에게 그대로 출력
    - 불일치 또는 이상 발견 시 반드시 사용자에게 보고
-6. /miro-update 스킬 자동 호출 (아키텍처 다이어그램 업데이트)
+6. Miro 다이어그램 업데이트:
+   - `echo $MIRO_AUTO_UPDATE` 로 환경변수 값 확인
+   - 값이 `true`이면: `/miro-update` 스킬 자동 호출
+   - 값이 없거나 `true`가 아니면: "💡 Miro 업데이트 건너뜀 (MIRO_AUTO_UPDATE=true 로 활성화 가능)" 출력 후 종료
