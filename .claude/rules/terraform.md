@@ -20,4 +20,4 @@
 - 한국어로 주석 작성
 - Azure Provider 버전: ~> 4.0 이상
 - Terraform 버전: >= 1.5.0
-- `providers.tf`의 `provider "azurerm"` 블록에 `subscription_id`를 반드시 직접 기입 (환경변수 방식 사용 안 함)
+- `subscription_id`는 `variables.tf`에 `sensitive = true`로 정의하고, 실제 값은 `terraform.tfvars`에 기입 (환경변수 방식 사용 안 함, `terraform.tfvars`는 `.gitignore`로 보호)

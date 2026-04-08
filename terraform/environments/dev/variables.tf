@@ -32,6 +32,12 @@ variable "spoke_vnet_address_space" {
   default     = ["10.1.0.0/16"]
 }
 
+variable "subscription_id" {
+  description = "Azure 구독 ID"
+  type        = string
+  sensitive   = true
+}
+
 variable "runner_ip" {
   description = "Terraform 러너 공인 IP (Storage ip_rules 등록용, plan/apply 시 자동 주입)"
   type        = string
