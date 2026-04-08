@@ -8,7 +8,8 @@ allowed-tools: Bash, Read
 $ARGUMENTS 환경에 Terraform 배포를 실행한다.
 
 1. plan 파일 존재 확인 (없으면 /tf-plan 먼저 실행)
-2. `terraform apply tfplan` 즉시 실행 (사용자 승인 대기 없이 바로 실행)
+2. tfplan staleness 체크: `.tf` 파일 중 tfplan보다 최신인 파일이 있으면 "⚠️ tfplan 이후 변경된 파일: [목록]" 경고 후 `/tf-plan 재실행이 필요합니다` 안내 후 중단
+3. `terraform apply tfplan` 즉시 실행 (사용자 승인 대기 없이 바로 실행)
 3. apply 실패 시: 에러 메시지를 분석하여 원인 파악 → 코드 자동 수정 시도 → 수정된 파일명과 변경 내용(before/after 코드 스니펫) 출력 → **/tf-plan 스킬을 호출하여 plan부터 재수행** (최대 2회 재시도)
    - 재시도 성공: "✅ apply 자동 수정 후 성공 (N회 시도)" 보고 후 다음 단계 진행
    - 2회 재시도 후에도 실패: 에러 내용과 시도한 수정 내역 출력 후 중단하고 사용자에게 보고
