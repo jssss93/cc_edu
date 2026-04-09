@@ -1,3 +1,6 @@
+---
+globs: "**/*.tf,**/*.tfvars,**/.terraform.lock.hcl"
+---
 ## Terraform 작업 규칙
 - 항상 `terraform fmt`를 실행 후 코드를 저장한다
 - `terraform plan -out=tfplan` 실행 전 반드시 다음 순서로 수행한다:
@@ -23,4 +26,4 @@
 - 한국어로 주석 작성
 - Azure Provider 버전: ~> 4.0 이상
 - Terraform 버전: >= 1.5.0
-- `subscription_id`는 `variables.tf`에 `sensitive = true`로 정의하고, 실제 값은 `terraform.tfvars`에 기입 (환경변수 방식 사용 안 함, `terraform.tfvars`는 `.gitignore`로 보호)
+- `subscription_id`는 `variables.tf`에 `sensitive = true`로 정의하고, 실제 값은 `terraform.tfvars`에 기입 (환경변수 방식 사용 안 함)
