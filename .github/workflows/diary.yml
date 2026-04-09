@@ -2,7 +2,7 @@ name: 업무 일지 자동 작성
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # 매일 15:00 KST (06:00 UTC)
+    - cron: '40 0 * * *'  # 매일 09:40 KST (00:40 UTC)
   workflow_dispatch:       # 수동 실행 가능
 
 jobs:
