@@ -10,8 +10,16 @@ if [[ "$TOOL" == mcp__* ]]; then
   TITLE="Claude Code: MCP 호출"
   MSG="[${SERVICE}] ${METHOD}"
 elif [[ "$TOOL" == "Agent" ]]; then
+  AGENT_NAME=$(echo "$INPUT" | jq -r '.tool_input.name // ""' 2>/dev/null)
+  AGENT_DESC=$(echo "$INPUT" | jq -r '.tool_input.description // ""' 2>/dev/null)
   TITLE="Claude Code: 에이전트 호출"
-  MSG="서브 에이전트 시작"
+  if [[ -n "$AGENT_NAME" ]]; then
+    MSG="[$AGENT_NAME] $AGENT_DESC"
+  elif [[ -n "$AGENT_DESC" ]]; then
+    MSG="$AGENT_DESC"
+  else
+    MSG="서브 에이전트 시작"
+  fi
 else
   TITLE="Claude Code: 툴 호출"
   MSG="$TOOL"
