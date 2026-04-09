@@ -5,7 +5,7 @@ description: >
   동적으로 결정하고 validation-checklist-{env}.json 파일로 저장한다.
   tf-plan에서 변경사항 감지 시 자동 호출.
 tools: Bash, Read, Write, Glob
-model: claude-sonnet-4-6
+model: claude-haiku-4-5-20251001
 maxTurns: 10
 ---
 

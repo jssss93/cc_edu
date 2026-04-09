@@ -2,7 +2,7 @@
 name: terraform-reviewer
 description: Terraform 코드 리뷰 전문가. tf 파일 변경 후 자동 사용.
 tools: Read, Grep, Glob, Bash
-model: claude-sonnet-4-6
+model: claude-opus-4-6
 maxTurns: 15
 ---
 
