@@ -13,9 +13,6 @@
       "Bash(terraform state*)",
       "Bash(terraform output*)",
       "Bash(terraform apply*)",
-      "Bash(terraform destroy*)",
-      "mcp__terraform__terraform_apply",
-      "mcp__terraform__terraform_destroy",
       "Bash(az *)",
       "Bash(git *)",
       "Bash(tflint *)",
@@ -28,6 +25,7 @@
       "mcp__terraform__terraform_output",
       "mcp__terraform__registry_search",
       "mcp__terraform__registry_module_details",
+      "Bash(infracost *)",
       "mcp__azure__group_list",
       "mcp__azure__group_resource_list",
       "mcp__azure__pricing",
@@ -45,7 +43,9 @@
     ],
     "deny": [
       "Bash(rm -rf *)",
-      "Bash(az group delete *)"
+      "Bash(az group delete *)",
+      "mcp__terraform__terraform_apply",
+      "mcp__terraform__terraform_destroy"
     ]
   },
   "hooks": {

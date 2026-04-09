@@ -27,3 +27,10 @@
 │   └── notify-on-stop.sh          # Claude 응답 완료 시 알림
 └── snapshots/                     # state 스냅샷 저장소 (gitignore)
 ```
+
+## 권한·비용·훅 (현재 정책 요약)
+
+- **권한**: `mcp__terraform__terraform_apply` / `mcp__terraform__terraform_destroy` 는 deny. 배포·삭제는 Bash + `/tf-apply`·`/tf-destroy` 스킬 절차. (교육안과 동일하게 MCP로 apply/destroy 하지 않음.)
+- **비용**: **infracost 예상치만** (`/tf-plan`). 실비용·청구 조회는 하지 않음 — [`.claude/rules/mcp.md`](rules/mcp.md), [`.claude/rules/terraform.md`](rules/terraform.md) 참고.
+- **훅**: `post-apply-snapshot.sh` 는 스냅샷 저장 후 **infracost·Miro 안내만 stdout** (자동 비용 조회·자동 Miro 생성 아님).
+- **사용 원칙**: Terraform 관련 작업은 `/tf-init`, `/tf-plan`, `/tf-apply`, `/tf-destroy`, `/tf-validate` 등 스킬 경로를 우선 사용하고, 예외적인 상황이 아니라면 직접 `terraform` Bash 명령을 호출하지 않는다.

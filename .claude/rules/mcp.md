@@ -1,4 +1,5 @@
 ## MCP 설정 규칙
+- MCP 서버 정의는 루트 `.mcp.json` 파일을 기준으로 관리한다.
 - Azure MCP 인증은 환경변수 방식 사용 안 함 → `az login` CLI 인증 사용
 - Azure MCP 실행: `npx -y @azure/mcp@latest server start` (env 블록 비움)
 - Terraform MCP 실행: `npx -y terraform-mcp-server` (패키지명: `terraform-mcp-server`, `@hashicorp/terraform-mcp-server` 아님)
@@ -16,8 +17,8 @@
 - 불일치 발견 시 반드시 사용자에게 보고
 
 ### 비용 관련 요청 시
-- Azure MCP cost query를 통해 실제 청구 데이터 기반으로 분석
-- plan 단계에서는 추가될 리소스의 예상 비용도 함께 제시
+- **실비용·청구액은 다루지 않는다.** 비용은 **`infracost breakdown --path tfplan`** 으로 나온 **예상 비용**만 참고한다 (`/tf-plan` 워크플로에 포함).
+- Azure MCP의 비용/청구 API는 이 프로젝트 범위에서 사용하지 않는다.
 
 ### 아키텍처 변경 시
 - 변경 완료 후 Miro MCP로 다이어그램 자동 업데이트
