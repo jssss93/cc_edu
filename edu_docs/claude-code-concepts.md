@@ -3,6 +3,8 @@
 > **이 문서의 목적**: Claude Code의 핵심 개념(용어 정의, 유사 개념 간 차이점)을 설명하고,  
 > 이 프로젝트(Azure Hub-Spoke Terraform)에서 어떻게 실제로 적용되었는지를 보여준다.
 
+> **연계:** 실습·모듈형 교재는 [claude-code-terraform-azure-education.md](./claude-code-terraform-azure-education.md)에서 **Phase 1 / Phase 2**, **Module 01–10**, **01.1** 형식으로 구성한다.
+
 ---
 
 ## 목차
