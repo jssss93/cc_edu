@@ -37,3 +37,13 @@ output "function_app_hostname" {
   description = "Function App 기본 호스트명"
   value       = azurerm_linux_function_app.main.default_hostname
 }
+
+output "acr_name" {
+  description = "Azure Container Registry 이름"
+  value       = azurerm_container_registry.main.name
+}
+
+output "acr_login_server" {
+  description = "Azure Container Registry 로그인 서버 URL"
+  value       = azurerm_container_registry.main.login_server
+}

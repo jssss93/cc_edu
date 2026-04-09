@@ -148,6 +148,25 @@ resource "azurerm_linux_function_app" "main" {
   tags = local.common_tags
 }
 
+# Azure Container Registry
+resource "azurerm_container_registry" "main" {
+  # checkov:skip=CKV_AZURE_163: dev 환경 - 관리자 계정 비활성화 유지
+  # checkov:skip=CKV_AZURE_139: dev 환경 - 공개 네트워크 접근 허용
+  # checkov:skip=CKV_AZURE_237: dev 환경 - 공개 네트워크 접근 허용
+  # checkov:skip=CKV_AZURE_164: dev 환경 - 서명된 이미지 정책 미사용
+  # checkov:skip=CKV_AZURE_165: dev 환경 - content trust 미사용
+  # checkov:skip=CKV_AZURE_166: dev 환경 - retention policy 미사용
+  # checkov:skip=CKV_AZURE_167: dev 환경 - quarantine policy 미사용
+  # checkov:skip=CKV_AZURE_233: dev 환경 - zone redundancy 미사용
+  name                = "cr${var.project}${var.environment}"
+  resource_group_name = azurerm_resource_group.spoke.name
+  location            = var.location
+  sku                 = var.acr_sku
+  admin_enabled       = false
+
+  tags = local.common_tags
+}
+
 # VNet 피어링 모듈 (Hub VNet 생성 이후 설정)
 module "vnet_peering" {
   source = "../../modules/vnet-peering"

@@ -43,3 +43,9 @@ variable "runner_ip" {
   type        = string
   default     = ""
 }
+
+variable "acr_sku" {
+  description = "Azure Container Registry SKU (Basic, Standard, Premium)"
+  type        = string
+  default     = "Basic"
+}
