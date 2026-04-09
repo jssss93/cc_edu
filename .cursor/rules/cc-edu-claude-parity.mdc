@@ -1,0 +1,47 @@
+---
+description: Claude Code .claude/settings.json 권한·훅·모델 의도를 Cursor에서 동일하게 맞추기 위한 프로젝트 규칙 (원본 설정 파일은 수정하지 않음)
+alwaysApply: true
+---
+
+# Claude Code 설정 parity (Cursor)
+
+이 규칙은 **`.claude/settings.json`을 바꾸지 않고**, Cursor 에이전트/CLI가 **같은 정책**을 따르도록 안내한다. 상세 원문은 저장소의 `.claude/settings.json`을 기준으로 한다.
+
+## 모델·동작 (참고)
+
+- Claude Code: `model` = `claude-sonnet-4-6`, `defaultMode` = `acceptEdits`, `autoMemoryEnabled` = true  
+- Cursor에서는 **에디터/CLI 모델 선택**으로 맞추면 된다 (이 파일이 자동으로 모델을 바꾸지는 않음).
+
+## 권한 정책 (`.claude/settings.json` `permissions` 미러)
+
+### 허용(allow)에 해당하는 도구 사용
+- 읽기/쓰기 작업 허용.
+- 셸: `terraform` (fmt, init, plan, validate, state, output, apply), `az`, `git`, `tflint`, `checkov`, `infracost`.
+- Terraform MCP: plan, validate, fmt, state_list, state_show, output, registry_search, registry_module_details.
+- Azure MCP: group_list, group_resource_list, pricing, subscription_list, monitor, advisor, resourcehealth.
+- GitHub MCP: get_file_contents, create_pull_request, create_branch, push_files.
+- Miro MCP: create_board_item, update_board_item, get_board_items.
+
+### 거부(deny) — **반드시 준수**
+- `Bash(rm -rf *)` 패턴에 해당하는 파괴적 삭제를 자동으로 수행하지 않는다.
+- `Bash(az group delete *)` 를 실행하지 않는다.
+- **Terraform MCP**의 `terraform_apply`, `terraform_destroy` 는 호출하지 않는다. 배포·삭제는 Bash의 `terraform apply …`, `terraform plan -destroy -out=tfplan` + `terraform apply tfplan` 등 **프로젝트 스킬** 절차를 따른다.
+
+## 훅(hooks) — Cursor 한계
+
+Claude Code의 `PreToolUse` / `PostToolUse` / `Stop` / `SubagentStart` 훅은 Cursor에 **동일 이식 불가**. 다음을 **수동으로 동등하게** 맞춘다.
+
+| Claude 훅 | 역할 | Cursor에서의 대응 |
+|-----------|------|-------------------|
+| `pre-destroy-guard.sh` | `terraform destroy` 직접 실행 차단 | `terraform destroy` 문자열 대신 **`plan -destroy` + `apply tfplan`** 사용 ([`.claude/skills/tf-destroy/SKILL.md`](.claude/skills/tf-destroy/SKILL.md)). |
+| `pre-push-tf-check.sh` | 푸시 전 검사 | 푸시 전 로컬에서 `terraform fmt` / `validate` 등을 실행하는 습관 또는 Git hook 유지. |
+| `notify-on-tool.sh` (async) | 도구 사용 알림 | 필요 시 로컬 알림 스크립트를 별도로 실행. |
+| `post-apply-snapshot.sh` | apply 후 스냅샷 | apply 성공 후 `.claude/snapshots` 절차를 문서대로 수동 실행. |
+| `post-tf-edit-review.sh` | .tf 편집 후 리뷰 | `.tf` 저장 후 plan/리뷰 체크리스트를 스스로 수행. |
+| SubagentStart / Stop 알림 | macOS 알림 | 선택 사항. |
+
+프로젝트 루트 [`CLAUDE.md`](CLAUDE.md)의 MCP apply/destroy 금지 설명과 이 규칙을 함께 따른다.
+
+## Cursor CLI
+
+이 저장소의 [`.cursor/cli.json`](.cursor/cli.json)은 위 **deny 의도**를 CLI 권한 패턴으로 반영한다. 문법이 환경에 따라 다를 수 있으므로, 거부가 먹지 않으면 Cursor 문서의 Permissions를 확인해 패턴을 조정한다.

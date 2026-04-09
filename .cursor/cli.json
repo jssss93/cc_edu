@@ -1,0 +1,46 @@
+{
+  "approvalMode": "allowlist",
+  "permissions": {
+    "allow": [
+      "Read(**)",
+      "Write(**)",
+      "Glob(**)",
+      "Grep(**)",
+      "SemanticSearch(**)",
+      "Shell(terraform fmt*)",
+      "Shell(terraform init*)",
+      "Shell(terraform plan*)",
+      "Shell(terraform validate*)",
+      "Shell(terraform state*)",
+      "Shell(terraform output*)",
+      "Shell(terraform apply*)",
+      "Shell(az *)",
+      "Shell(git *)",
+      "Shell(tflint *)",
+      "Shell(checkov *)",
+      "Shell(infracost *)",
+      "Mcp(terraform, terraform_plan)",
+      "Mcp(terraform, terraform_validate)",
+      "Mcp(terraform, terraform_fmt)",
+      "Mcp(terraform, terraform_state_list)",
+      "Mcp(terraform, terraform_state_show)",
+      "Mcp(terraform, terraform_output)",
+      "Mcp(terraform, registry_search)",
+      "Mcp(terraform, registry_module_details)",
+      "Mcp(azure, group_list)",
+      "Mcp(azure, group_resource_list)",
+      "Mcp(azure, pricing)",
+      "Mcp(azure, subscription_list)",
+      "Mcp(azure, monitor)",
+      "Mcp(azure, advisor)",
+      "Mcp(azure, resourcehealth)",
+      "Mcp(miro, *)"
+    ],
+    "deny": [
+      "Shell(rm -rf *)",
+      "Shell(az group delete *)",
+      "Mcp(terraform, terraform_apply)",
+      "Mcp(terraform, terraform_destroy)"
+    ]
+  }
+}
