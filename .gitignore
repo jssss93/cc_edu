@@ -24,5 +24,4 @@ Thumbs.db
 # Claude Code 로컬 파일
 .claude/settings.local.json
 .claude/snapshots/
-.claude/cost-reports/
 
