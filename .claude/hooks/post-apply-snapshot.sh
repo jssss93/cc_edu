@@ -41,6 +41,7 @@ else
   terraform -chdir="$CWD" output -json > "$PROJECT_ROOT/.claude/last-output.json" 2>/dev/null || true
   RESOURCE_COUNT=$(terraform -chdir="$CWD" state list 2>/dev/null | wc -l | tr -d ' ')
   echo "📋 스냅샷 저장 완료 — 리소스 ${RESOURCE_COUNT}개 (${TIMESTAMP})"
+  echo "💡 권장(수동): 예상 비용은 \`/tf-plan\` 단계의 infracost 결과를 참고. 다이어그램은 필요 시 \`/miro-update\` (또는 MIRO_AUTO_UPDATE=true 시 tf-apply 흐름)."
 fi
 
 exit 0
