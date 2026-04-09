@@ -213,6 +213,20 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 .prop-val{font-size:.82rem;color:rgba(255,255,255,.75);line-height:1.4}
 .analogy{margin-top:1.2rem;padding:.8rem;border-radius:8px;font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.5;border:1px dashed rgba(255,255,255,.08)}
 
+/* S9b — .claude/rules/ (cc_edu 현재 코드) */
+#s9b{background:#0d1117;overflow:hidden}
+#s9b .inner{max-width:1120px;width:94%;padding:1.6rem 2rem}
+#s9b h2{font-size:clamp(1.45rem,2.6vw,2.1rem);color:#fff;margin-bottom:.45rem}
+#s9b .rules-lead{font-size:.76rem;color:var(--muted);margin-bottom:1rem;line-height:1.55}
+.rules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
+.rule-file{padding:.95rem 1rem;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+.rule-file .rf-name{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--teal);margin-bottom:.3rem}
+.rule-file .rf-glob{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:rgba(255,255,255,.32);margin-bottom:.45rem;line-height:1.45;word-break:break-all}
+.rule-file ul{list-style:none}
+.rule-file li{font-size:.68rem;color:rgba(255,255,255,.52);padding:.18rem 0;line-height:1.42;padding-left:.8rem;position:relative}
+.rule-file li::before{content:'·';position:absolute;left:0;color:rgba(255,255,255,.22)}
+#s9b .rules-foot{margin-top:.85rem;font-size:.65rem;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,.28);line-height:1.5}
+
 /* S10 */
 #s10{background:var(--ink);overflow:hidden}
 #s10::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(123,47,255,.12),transparent)}
@@ -403,7 +417,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 /* S24 (Module 10) */
 #s24{background:var(--mid);overflow:hidden}
 #s24 h2{font-size:2.2rem;margin-bottom:1.5rem}
-.pipeline{display:grid;grid-template-columns:repeat(7,1fr);gap:.6rem;align-items:start}
+.pipeline{display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem;align-items:start}
 .pl-step{display:flex;flex-direction:column;align-items:center;text-align:center}
 .pl-num{width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:.9rem;margin-bottom:.5rem;flex-shrink:0}
 .pl-title{font-size:.74rem;font-weight:600;margin-bottom:.4rem;line-height:1.3}
@@ -465,16 +479,16 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <div id="deck">
 
 <!-- ══════════════════════════════════════
-     PART 1: Claude Code 핵심 개념 (S1~S13)
+     PART 1: Claude Code 핵심 개념 (14슬라이드 · rules 상세 = id s9b)
 ══════════════════════════════════════ -->
 
 <!-- S1 TITLE -->
 <div class="slide active" id="s1">
   <div class="bg-grid"></div>
   <div class="blob"></div><div class="blob2"></div>
-  <div class="slide-count">01 / 26</div>
+  <div class="slide-count">01 / 27</div>
   <div class="content">
-    <p class="eyebrow">KT AX Engineering Team · 2026  ·  Part 1 of 2</p>
+    <p class="eyebrow">part1-1</p>
     <h1>Claude<br><span>Code</span></h1>
     <p class="sub">핵심 개념 교육 자료 — Azure Hub-Spoke Terraform 프로젝트 적용 사례 포함</p>
     <div class="tags">
@@ -489,6 +503,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <div class="slide" id="s2">
   <div class="layout">
     <div class="left">
+      <p class="eyebrow">part1-2</p>
       <h2>Claude Code<br><em>란?</em></h2>
       <p>Anthropic이 만든 AI 기반 CLI 도구.<br>단순한 챗봇이 아닌, 코드베이스 전체를 이해하는 AI 개발 동료.</p>
       <div class="badge">$ claude code</div>
@@ -510,6 +525,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <div class="slide" id="s3">
   <div class="bg-noise"></div>
   <div class="inner">
+    <p class="eyebrow">part1-3</p>
     <h2>핵심 개념 08가지</h2>
     <div class="grid8">
       <div class="c8"><div class="bar" style="background:#00c2a8"></div><div class="num">01</div><div class="name">CLAUDE.md</div><div class="desc">프로젝트 지시사항 파일. 열 때 자동 로드, 컨텍스트 주입</div></div>
@@ -527,6 +543,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <!-- S4 -->
 <div class="slide" id="s4">
   <div class="inner">
+    <p class="eyebrow">part1-4</p>
     <h2><span>CLAUDE.md</span> 계층 구조</h2>
     <div class="terminal">
       <div class="t-bar"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div><span class="t-title">CLAUDE.md hierarchy</span></div>
@@ -554,6 +571,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <!-- S5 -->
 <div class="slide" id="s5">
   <div class="inner">
+    <p class="eyebrow">part1-5</p>
     <h2>Hooks</h2>
     <p class="sub">특정 이벤트 발생 시 자동으로 실행되는 쉘 스크립트</p>
     <div class="flow">
@@ -577,6 +595,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <!-- S6 -->
 <div class="slide" id="s6">
   <div class="inner">
+    <p class="eyebrow">part1-6</p>
     <h2>Skills  vs  Agents</h2>
     <div class="versus">
       <div class="vs-col skills">
@@ -605,6 +624,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <!-- S7 -->
 <div class="slide" id="s7">
   <div class="inner">
+    <p class="eyebrow">part1-7</p>
     <h2>Skills–Agents 오케스트레이션</h2>
     <div class="orch">
       <div class="o-box" style="background:#2b6cb0;min-width:260px">사용자: /tf-plan dev</div>
@@ -627,12 +647,13 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <!-- S8 -->
 <div class="slide" id="s8">
   <div class="inner">
+    <p class="eyebrow">part1-8</p>
     <h2>MCP Servers</h2>
     <div class="mcp-layout">
       <div>
         <div class="mcp-cards">
-          <div class="mcp-card"><div class="mname">Terraform</div><div class="mpkg">terraform-mcp-server (stdio)</div><div class="mrole">plan/apply/state CLI 없이 MCP로 처리</div><div class="mbar" style="background:#7b2fbe"></div></div>
-          <div class="mcp-card"><div class="mname">Azure</div><div class="mpkg">@azure/mcp (stdio)</div><div class="mrole">리소스 조회·비용. az login 인증</div><div class="mbar" style="background:#0078d4"></div></div>
+          <div class="mcp-card"><div class="mname">Terraform</div><div class="mpkg">terraform-mcp-server (stdio)</div><div class="mrole">plan/state — MCP apply·destroy는 settings deny</div><div class="mbar" style="background:#7b2fbe"></div></div>
+          <div class="mcp-card"><div class="mname">Azure</div><div class="mpkg">@azure/mcp (stdio)</div><div class="mrole">리소스·구독·토폴로지 — 실청구 조회 안 함</div><div class="mbar" style="background:#0078d4"></div></div>
           <div class="mcp-card"><div class="mname">GitHub</div><div class="mpkg">github copilot (http)</div><div class="mrole">PR·브랜치·커밋 관리</div><div class="mbar" style="background:#6e7681"></div></div>
           <div class="mcp-card"><div class="mname">Miro</div><div class="mpkg">@mirohq/mcp-server (stdio)</div><div class="mrole">아키텍처 다이어그램 자동 생성</div><div class="mbar" style="background:#ffd02f"></div></div>
         </div>
@@ -653,6 +674,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <!-- S9 -->
 <div class="slide" id="s9">
   <div class="inner">
+    <p class="eyebrow">part1-9</p>
     <h2>헷갈리는 개념 비교</h2>
     <div class="trio">
       <div class="trio-card" style="border-color:rgba(0,194,168,.2)">
@@ -665,9 +687,10 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
       <div class="trio-card" style="border-color:rgba(72,187,120,.2)">
         <h3 style="color:#48bb78">rules/ (.md)</h3>
         <div class="prop-row"><div class="prop-key">형식</div><div class="prop-val">마크다운 (.md)</div></div>
-        <div class="prop-row"><div class="prop-key">목적</div><div class="prop-val">특정 작업 규칙 정의</div></div>
+        <div class="prop-row"><div class="prop-key">목적</div><div class="prop-val">특정 작업·도메인 규칙 (globs로 파일 범위 지정 가능)</div></div>
         <div class="prop-row"><div class="prop-key">로드 시점</div><div class="prop-val">.claude/rules/ 자동 로드</div></div>
-        <div class="analogy">💡 코딩 컨벤션 가이드<br>"코드는 이렇게 써야 해"</div>
+        <div class="prop-row"><div class="prop-key">cc_edu</div><div class="prop-val">azure.md · terraform.md · mcp.md</div></div>
+        <div class="analogy">💡 코딩 컨벤션 가이드<br>"코드는 이렇게 써야 해" → 다음 슬라이드에 파일별 요약</div>
       </div>
       <div class="trio-card" style="border-color:rgba(245,200,66,.2)">
         <h3 style="color:var(--gold)">settings.json</h3>
@@ -680,9 +703,55 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
   </div>
 </div>
 
+<!-- S9b 프로젝트 rules/ 일람 (현재 레포 기준) -->
+<div class="slide" id="s9b">
+  <div class="inner">
+    <p class="eyebrow">part1-10</p>
+    <h2>.claude/rules/ — cc_edu 현재 룰 파일</h2>
+    <p class="rules-lead">YAML <code style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--teal)">globs</code>가 있으면 해당 패턴의 파일 작업 시에만 주입된다. <code style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--gold)">mcp.md</code>는 globs 없이 MCP·스킬 동작 전역 규칙으로 쓴다.</p>
+    <div class="rules-grid">
+      <div class="rule-file" style="border-color:rgba(0,120,212,.25)">
+        <div class="rf-name">azure.md</div>
+        <div class="rf-glob">globs: **/*.tf, **/*.tfvars</div>
+        <ul>
+          <li>명명: <code style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:rgba(255,255,255,.45)">{약어}-{역할}-{프로젝트}-{환경}-{리전}</code> · Storage 예외 규칙</li>
+          <li>Hub 10.0.0.0/16 · Spoke 10.{n}.0.0/16, PE는 Peering 이후, NSG는 모든 Subnet</li>
+          <li>태그 필수: environment, owner, project</li>
+          <li>하드코딩 금지 — 구독·SKU·CIDR 등은 variables.tf + tfvars, 민감값은 sensitive</li>
+        </ul>
+      </div>
+      <div class="rule-file" style="border-color:rgba(0,194,168,.25)">
+        <div class="rf-name">terraform.md</div>
+        <div class="rf-glob">globs: **/*.tf, **/*.tfvars, **/.terraform.lock.hcl</div>
+        <ul>
+          <li>저장 전 terraform fmt · plan 전 fmt → validate → checkov 순서</li>
+          <li>Checkov 실패 시 skip 자동 추가 금지 — 사용자 결정(human-in-the-loop)</li>
+          <li>plan 후 변경 표 + infracost breakdown --path tfplan (예상 비용만)</li>
+          <li>tags·variables/tfvars 분리 · destroy는 사용자 확인 후</li>
+          <li>주석 한국어 · provider ~&gt; 4.0 · TF &gt;= 1.5.0</li>
+        </ul>
+      </div>
+      <div class="rule-file" style="border-color:rgba(123,47,255,.22)">
+        <div class="rf-name">mcp.md</div>
+        <div class="rf-glob">globs 없음 (전역 MCP 규칙)</div>
+        <ul>
+          <li>Azure MCP: az login CLI 인증 · <code style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:rgba(255,255,255,.45)">npx -y @azure/mcp@latest server start</code></li>
+          <li>Terraform MCP: <code style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:rgba(255,255,255,.45)">npx -y terraform-mcp-server</code> (패키지명 주의)</li>
+          <li>신규 리소스 전 Registry 검색 · validate·plan/state는 MCP 우선</li>
+          <li>실청구·비용 API 금지 — infracost(tfplan) 예상만</li>
+          <li>배포 후 TF state + Azure 실제 리소스 대조 · 아키텍처 변경 시 Miro MCP</li>
+          <li>스킬은 프롬프트 주입 — tf-apply/destroy는 plan 파일 선행</li>
+        </ul>
+      </div>
+    </div>
+    <p class="rules-foot">상세·전문: 저장소 .claude/rules/*.md 및 루트 CLAUDE.md(settings deny MCP apply/destroy, 로컬 state, infracost만)와 함께 참고</p>
+  </div>
+</div>
+
 <!-- S10 -->
 <div class="slide" id="s10">
   <div class="inner">
+    <p class="eyebrow">part1-11</p>
     <h2>내장 플러그인</h2>
     <div class="plugin-trio">
       <div class="plugin" style="background:rgba(0,194,168,.06);border-color:rgba(0,194,168,.15)">
@@ -713,6 +782,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <!-- S11 -->
 <div class="slide" id="s11">
   <div class="inner">
+    <p class="eyebrow">part1-12</p>
     <h2>전체 아키텍처 구조도</h2>
     <div class="arch">
       <div class="arch-box arch-center" style="background:#2b6cb0;color:#fff;max-width:320px;margin:0 auto">사용자 — /tf-plan &nbsp;/tf-apply &nbsp;/tf-destroy</div>
@@ -724,7 +794,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
       <div class="arch-sub">
         <div class="arch-sub-box" style="border-color:rgba(230,126,34,.3)"><h4 style="color:#e67e22">Hooks (자동)</h4><ul><li>Pre: destroy-guard</li><li>Post(Bash): apply-snapshot</li><li>Post(Edit): tf-edit-review</li><li>Stop: notify-on-stop</li></ul></div>
         <div class="arch-sub-box" style="border-color:rgba(123,47,255,.2)"><h4 style="color:var(--accent)">Agents (병렬)</h4><ul><li>azure-validator → Azure 검증</li><li>terraform-reviewer → 영향도</li><li>plan-validator → 체크리스트</li><li>cost-optimizer → SKU 최적화</li></ul></div>
-        <div class="arch-sub-box" style="border-color:rgba(221,160,221,.3)"><h4 style="color:#dda0dd">MCP Servers</h4><ul><li>Terraform → plan/apply/state</li><li>Azure → 리소스·비용</li><li>GitHub → PR·커밋</li><li>Miro → 다이어그램</li></ul></div>
+        <div class="arch-sub-box" style="border-color:rgba(221,160,221,.3)"><h4 style="color:#dda0dd">MCP Servers</h4><ul><li>Terraform → plan/state</li><li>Azure → 리소스</li><li>GitHub → PR·커밋</li><li>Miro → 다이어그램</li></ul></div>
       </div>
     </div>
   </div>
@@ -733,15 +803,16 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <!-- S12 요약 -->
 <div class="slide" id="s12">
   <div class="inner">
+    <p class="eyebrow">part1-13</p>
     <h2>요약 정리</h2>
     <div class="summary-grid">
+      <div class="scard"><div class="sname" style="color:#48bb78">rules/</div><div class="sdef">도메인·파일별 규칙 (.md)</div><div class="sex">azure · terraform · mcp (globs)</div></div>
       <div class="scard"><div class="sname" style="color:#00c2a8">CLAUDE.md</div><div class="sdef">프로젝트 지시사항 파일</div><div class="sex">Azure Hub-Spoke 구조, 환경 정보</div></div>
       <div class="scard"><div class="sname" style="color:#4ecdc4">settings.json</div><div class="sdef">런타임 권한/훅 설정</div><div class="sex">destroy 차단, 편집 후 리뷰</div></div>
       <div class="scard"><div class="sname" style="color:#ed8936">Hooks</div><div class="sdef">이벤트 기반 자동 스크립트</div><div class="sex">apply 스냅샷, destroy 가드</div></div>
       <div class="scard"><div class="sname" style="color:#96ceb4">Skills</div><div class="sdef">사용자 호출 커스텀 명령어</div><div class="sex">/tf-plan, /tf-apply, /tf-destroy</div></div>
       <div class="scard"><div class="sname" style="color:#ffeaa7">Agents</div><div class="sdef">전문화된 독립 인스턴스</div><div class="sex">azure-validator, tf-reviewer</div></div>
       <div class="scard"><div class="sname" style="color:#dda0dd">MCP Servers</div><div class="sdef">외부 시스템 연동</div><div class="sex">Azure, Terraform, Miro, GitHub</div></div>
-      <div class="scard"><div class="sname" style="color:#ffb347">Permissions</div><div class="sdef">허용/차단 도구 범위</div><div class="sex">Bash allowlist, MCP 접근</div></div>
       <div class="scard"><div class="sname" style="color:#ff8b94">Memory</div><div class="sdef">세션 간 정보 유지</div><div class="sex">역할·피드백·프로젝트 맥락</div></div>
     </div>
   </div>
@@ -751,6 +822,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <div class="slide" id="s13">
   <div class="blob" style="position:absolute;width:800px;height:800px;top:-200px;left:-200px;background:radial-gradient(circle,rgba(0,194,168,.12),transparent 70%);border-radius:50%"></div>
   <div class="inner" style="text-align:center;position:relative;z-index:1">
+    <p class="eyebrow" style="margin-bottom:1rem">part1-14</p>
     <div class="big" style="font-size:clamp(3rem,10vw,8rem);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.15)">PART 1</div>
     <p style="margin-top:1.5rem;font-size:1rem;color:rgba(255,255,255,.4)">Claude Code 핵심 개념 완료</p>
     <p style="margin-top:.8rem;font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--teal)">→ 다음: Terraform × Azure 실전 교육</p>
@@ -759,14 +831,14 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 </div>
 
 <!-- ══════════════════════════════════════
-     PART 2: Terraform × Azure (S14~S26)
+     PART 2: Terraform × Azure (S14~S26, 전체 27슬라이드)
 ══════════════════════════════════════ -->
 
 <!-- S14 DIVIDER / PART2 TITLE -->
 <div class="slide" id="s14" style="background:#07090f;overflow:hidden">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(0,120,212,.18),transparent)"></div>
   <div style="position:relative;z-index:1;text-align:center;padding:3rem;max-width:900px;width:90%">
-    <p style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--azure);text-transform:uppercase;letter-spacing:.2em;margin-bottom:1.5rem;opacity:0;animation:fadeUp .6s .2s forwards">KT AX Engineering Team · Part 2 of 2</p>
+    <p class="eyebrow" style="color:var(--azure);letter-spacing:.12em;margin-bottom:1.5rem;opacity:0;animation:fadeUp .6s .2s forwards">part2-1</p>
     <h2 style="font-size:clamp(2.8rem,7vw,5.5rem);color:#fff;line-height:.9;opacity:0;animation:fadeUp .6s .4s forwards">Claude Code<br><span style="color:var(--azure)">× Terraform</span><br><span style="color:var(--teal)">× Azure</span></h2>
     <p style="margin-top:1.5rem;font-size:1rem;color:var(--muted);opacity:0;animation:fadeUp .6s .6s forwards">Azure 인프라 완전 자동화 — 배포 · 비용 · 시각화</p>
     <div style="margin-top:2rem;display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;opacity:0;animation:fadeUp .6s .8s forwards">
@@ -785,7 +857,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <div class="slide" id="s15">
   <div class="layout">
     <div>
-      <p class="eyebrow">Module 01</p>
+      <p class="eyebrow">part2-2</p>
       <h2 style="color:#fff;font-size:2.4rem">Claude Code<br>기초</h2>
       <p class="desc" style="margin-top:.6rem">터미널 기반 AI 코딩 에이전트 — 파일 시스템 접근, 명령어 실행, MCP 도구 연동이 가능한 완전한 개발 환경</p>
       <div style="margin-bottom:1rem">
@@ -818,7 +890,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <div class="slide" id="s16">
   <div class="layout">
     <div>
-      <p class="eyebrow">Module 02</p>
+      <p class="eyebrow">part2-3</p>
       <h2 style="color:#fff;font-size:2rem;margin-bottom:1rem">프로젝트 설정</h2>
       <div class="tree">
         <div><span class="d">terraform-azure-project/</span></div>
@@ -827,6 +899,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
         <div>├── <span class="hl">.mcp.json</span>  <span class="cm"># MCP 서버 설정</span></div>
         <div>└── <span class="d">.claude/</span></div>
         <div>&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="f">settings.json</span>  <span class="cm"># 공유</span></div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="d">rules/</span>  <span class="cm"># azure · terraform · mcp</span></div>
         <div>&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="d">skills/</span>  <span class="cm"># tf-init/plan/apply/destroy</span></div>
         <div>&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="d">agents/</span>  <span class="cm"># reviewer/validator</span></div>
         <div>&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="d">hooks/</span>  <span class="cm"># pre/post scripts</span></div>
@@ -834,7 +907,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
     </div>
     <div class="config-cards">
       <div class="cc"><div class="cc-title" style="color:var(--teal)">CLAUDE.md 핵심 규칙</div><div class="cc-body">항상 terraform fmt 실행 후 저장<br>모든 리소스에 tags 블록 필수 (env, owner, project)<br>변수는 variables.tf, 값은 tfvars 분리<br>NSG 모든 Subnet 필수 적용</div><span class="cc-tip">@terraform/variables.tf 자동 참조</span></div>
-      <div class="cc"><div class="cc-title" style="color:var(--azure)">settings.json 핵심</div><div class="cc-body">defaultMode: acceptEdits<br>allow: terraform *, az *, git *, tflint *, checkov *<br>deny: terraform destroy, rm -rf *, az group delete *</div></div>
+      <div class="cc"><div class="cc-title" style="color:var(--azure)">settings.json 핵심</div><div class="cc-body">defaultMode: acceptEdits<br>allow: terraform fmt/init/plan/validate/state/output/apply, az *, git *, tflint *, checkov *, infracost *<br>deny: mcp__terraform__terraform_apply/destroy, rm -rf *, az group delete *</div></div>
       <div class="cc"><div class="cc-title" style="color:var(--orange)">.claudeignore</div><div class="cc-body">.terraform/, *.tfstate*, *.tfplan<br>*.tfvars (!example 제외), .env, *.pem, *.key</div></div>
     </div>
   </div>
@@ -843,18 +916,18 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <!-- S17 Module 3 -->
 <div class="slide" id="s17">
   <div class="inner" style="position:relative;z-index:1">
-    <p class="eyebrow">Module 03</p>
+    <p class="eyebrow">part2-4</p>
     <h2 style="color:#fff;font-size:2.2rem;margin-bottom:1.5rem">MCP Server 연동</h2>
     <div class="mcp-grid">
-      <div class="mcp-c"><div class="mbar" style="background:#7c3aed"></div><div class="mico">🔧</div><div class="mname" style="color:#a78bfa">Terraform MCP</div><div class="mpkg">@hashicorp/terraform-mcp-server</div><div class="mrole">plan/apply/state 분석, Registry 검색, validate/fmt</div></div>
-      <div class="mcp-c"><div class="mbar" style="background:var(--azure)"></div><div class="mico">☁️</div><div class="mname" style="color:var(--azure)">Azure MCP</div><div class="mpkg">@azure/mcp-server</div><div class="mrole">리소스 조회·관리, 비용 분석, 네트워크 토폴로지</div></div>
+      <div class="mcp-c"><div class="mbar" style="background:#7c3aed"></div><div class="mico">🔧</div><div class="mname" style="color:#a78bfa">Terraform MCP</div><div class="mpkg">terraform-mcp-server (stdio)</div><div class="mrole">plan/state, Registry, validate/fmt — MCP apply·destroy deny</div></div>
+      <div class="mcp-c"><div class="mbar" style="background:var(--azure)"></div><div class="mico">☁️</div><div class="mname" style="color:var(--azure)">Azure MCP</div><div class="mpkg">@azure/mcp@latest (stdio)</div><div class="mrole">리소스·구독·토폴로지 — az login 인증</div></div>
       <div class="mcp-c"><div class="mbar" style="background:#6e7681"></div><div class="mico">🐙</div><div class="mname" style="color:#8b949e">GitHub MCP</div><div class="mpkg">githubcopilot (http)</div><div class="mrole">PR 자동 생성, 브랜치 관리, Actions 트리거</div></div>
       <div class="mcp-c"><div class="mbar" style="background:#ffd02f"></div><div class="mico">🎨</div><div class="mname" style="color:var(--gold)">Miro MCP</div><div class="mpkg">@mirohq/mcp-server</div><div class="mrole">아키텍처 다이어그램 자동 생성·업데이트</div></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem">
-      <div style="text-align:center"><div style="font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--dim);margin-bottom:.4rem">코드 작성/수정</div><div style="padding:.4rem;border-radius:6px;font-size:.72rem;background:rgba(124,58,237,.15);color:#a78bfa;border:1px solid rgba(124,58,237,.2)">Terraform MCP<br><span style="opacity:.6">→ GitHub MCP</span></div></div>
+      <div style="text-align:center"><div style="font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--dim);margin-bottom:.4rem">예상 비용</div><div style="padding:.4rem;border-radius:6px;font-size:.72rem;background:rgba(0,194,168,.12);color:var(--teal);border:1px solid rgba(0,194,168,.2)">infracost<br><span style="opacity:.6">/tf-plan (Bash)</span></div></div>
       <div style="text-align:center"><div style="font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--dim);margin-bottom:.4rem">배포/상태 확인</div><div style="padding:.4rem;border-radius:6px;font-size:.72rem;background:rgba(0,120,212,.15);color:var(--azure);border:1px solid rgba(0,120,212,.2)">Terraform MCP<br><span style="opacity:.6">→ Azure MCP</span></div></div>
-      <div style="text-align:center"><div style="font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--dim);margin-bottom:.4rem">비용 분석</div><div style="padding:.4rem;border-radius:6px;font-size:.72rem;background:rgba(0,194,168,.12);color:var(--teal);border:1px solid rgba(0,194,168,.2)">Azure MCP<br><span style="opacity:.6">→ TF MCP</span></div></div>
+      <div style="text-align:center"><div style="font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--dim);margin-bottom:.4rem">코드 작성/수정</div><div style="padding:.4rem;border-radius:6px;font-size:.72rem;background:rgba(124,58,237,.15);color:#a78bfa;border:1px solid rgba(124,58,237,.2)">Terraform MCP<br><span style="opacity:.6">→ GitHub MCP</span></div></div>
       <div style="text-align:center"><div style="font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--dim);margin-bottom:.4rem">아키텍처 문서화</div><div style="padding:.4rem;border-radius:6px;font-size:.72rem;background:rgba(255,214,0,.08);color:var(--gold);border:1px solid rgba(255,214,0,.15)">TF → Azure<br><span style="opacity:.6">→ Miro MCP</span></div></div>
     </div>
   </div>
@@ -864,14 +937,14 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <div class="slide" id="s18">
   <div class="layout">
     <div>
-      <p class="eyebrow">Module 04</p>
+      <p class="eyebrow">part2-5</p>
       <h2 style="color:#fff;font-size:2rem;margin-bottom:1rem">MCP 적극 활용 전략</h2>
       <div class="scenario"><div class="sc-title"><span class="sc-num">시나리오 1</span> 신규 AKS 클러스터 배포</div><div class="sc-steps"><div class="sc-step"><span class="mcp-tag" style="background:rgba(124,58,237,.15);color:#a78bfa">TF MCP</span>registry_search("azure aks module")</div><div class="sc-step"><span class="mcp-tag" style="background:rgba(124,58,237,.15);color:#a78bfa">TF MCP</span>state_show("azurerm_virtual_network.hub") → 기존 CIDR 확인</div><div class="sc-step"><span class="mcp-tag" style="background:rgba(110,118,129,.2);color:#8b949e">GH MCP</span>get_file("terraform/modules/spoke-vnet/main.tf")</div><div class="sc-step"><span class="mcp-tag" style="background:rgba(124,58,237,.15);color:#a78bfa">TF MCP</span>terraform_validate() + terraform_fmt() 자동 실행</div></div></div>
       <div class="scenario"><div class="sc-title"><span class="sc-num">시나리오 2</span> PR 자동 생성</div><div class="sc-steps"><div class="sc-step"><span class="mcp-tag" style="background:rgba(124,58,237,.15);color:#a78bfa">TF MCP</span>state_show("azurerm_network_security_group.*")</div><div class="sc-step">NSG 규칙 코드 수정 → validate</div><div class="sc-step"><span class="mcp-tag" style="background:rgba(110,118,129,.2);color:#8b949e">GH MCP</span>create_branch → create_commit → create_pull_request</div></div></div>
     </div>
     <div>
       <div class="scenario"><div class="sc-title"><span class="sc-num">시나리오 3</span> 배포 후 전체 상태 리포트</div><div class="sc-steps"><div class="sc-step"><span class="mcp-tag" style="background:rgba(124,58,237,.15);color:#a78bfa">TF MCP</span>state_list() + terraform_output()</div><div class="sc-step"><span class="mcp-tag" style="background:rgba(0,120,212,.15);color:var(--azure)">AZ MCP</span>resource_list() + network_topology()</div><div class="sc-step"><span class="mcp-tag" style="background:rgba(255,214,0,.1);color:var(--gold)">MIRO</span>create_frame() + create_shapes() → 보드 업데이트</div></div></div>
-      <div class="scenario"><div class="sc-title"><span class="sc-num">시나리오 4</span> 비용 이상 분석</div><div class="sc-steps"><div class="sc-step"><span class="mcp-tag" style="background:rgba(0,120,212,.15);color:var(--azure)">AZ MCP</span>cost_query(group_by="ServiceName")</div><div class="sc-step"><span class="mcp-tag" style="background:rgba(0,120,212,.15);color:var(--azure)">AZ MCP</span>cost_query(group_by="ResourceName") → 원인 특정</div><div class="sc-step"><span class="mcp-tag" style="background:rgba(124,58,237,.15);color:#a78bfa">TF MCP</span>state_show + monitor_metrics → SKU 최적화 제안</div></div></div>
+      <div class="scenario"><div class="sc-title"><span class="sc-num">시나리오 4</span> 예상 비용 (infracost)</div><div class="sc-steps"><div class="sc-step"><span class="mcp-tag" style="background:rgba(0,194,168,.15);color:var(--teal)">Bash</span>terraform plan -out=tfplan</div><div class="sc-step"><span class="mcp-tag" style="background:rgba(0,194,168,.15);color:var(--teal)">infracost</span>breakdown --path tfplan</div><div class="sc-step"><span class="mcp-tag" style="background:rgba(245,200,66,.15);color:var(--gold)">Agent</span>cost-optimizer — SKU 점검 (실청구 아님)</div></div></div>
       <div style="padding:.7rem .9rem;border-radius:8px;background:rgba(229,62,62,.06);border:1px solid rgba(229,62,62,.15);margin-top:.6rem"><div style="font-size:.72rem;color:#fc8181;font-family:'JetBrains Mono',monospace;margin-bottom:.3rem">⚠️ deny 설정 필수</div><div style="font-size:.75rem;color:var(--muted)">terraform_apply / terraform_destroy → deny<br>/tf-apply, /tf-destroy 스킬을 통해서만 실행</div></div>
     </div>
   </div>
@@ -881,22 +954,22 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <div class="slide" id="s19">
   <div class="layout">
     <div>
-      <p class="eyebrow">Module 05</p>
+      <p class="eyebrow">part2-6</p>
       <h2 style="color:#fff;font-size:2.2rem">Hooks &<br>자동화</h2>
       <div class="hook-flow">
         <div class="hf-box" style="background:rgba(0,120,212,.15);color:var(--azure)">사용자 요청</div>
         <div class="hf-arr">↓</div>
-        <div class="hf-box" style="background:rgba(245,129,63,.2);color:var(--orange);border:1px dashed rgba(245,129,63,.4)">PreToolUse Hook — tflint · checkov · destroy 가드</div>
+        <div class="hf-box" style="background:rgba(245,129,63,.2);color:var(--orange);border:1px dashed rgba(245,129,63,.4)">PreToolUse Hook — terraform destroy 가드</div>
         <div class="hf-arr">↓</div>
         <div class="hf-box" style="background:rgba(124,58,237,.15);color:#a78bfa">terraform plan / apply</div>
         <div class="hf-arr">↓</div>
-        <div class="hf-box" style="background:rgba(245,129,63,.2);color:var(--orange);border:1px dashed rgba(245,129,63,.4)">PostToolUse Hook — 비용 · Miro · 스냅샷</div>
+        <div class="hf-box" style="background:rgba(245,129,63,.2);color:var(--orange);border:1px dashed rgba(245,129,63,.4)">PostToolUse Hook — 스냅샷 · infracost/Miro 안내</div>
       </div>
     </div>
     <div class="hook-cards">
-      <div class="hk"><div class="hk-ico">🛡️</div><div><div class="hk-name">pre-terraform.sh</div><div class="hk-ev">PreToolUse · terraform apply*</div><div class="hk-desc">tflint --recursive · checkov -d . · destroy 감지 시 BLOCK</div></div></div>
-      <div class="hk"><div class="hk-ico">💾</div><div><div class="hk-name">post-terraform.sh</div><div class="hk-ev">PostToolUse · terraform apply*</div><div class="hk-desc">output -json 저장 · state list 요약 · /cost-report 권장</div></div></div>
-      <div class="hk"><div class="hk-ico">🚀</div><div><div class="hk-name">post-deploy-full.sh</div><div class="hk-ev">PostToolUse · 통합 버전</div><div class="hk-desc">[1] state 스냅샷 [2] 오늘/월 비용 조회 [3] $1,000 초과 경고 [4] /miro-update 안내</div></div></div>
+      <div class="hk"><div class="hk-ico">🛡️</div><div><div class="hk-name">pre-destroy-guard.sh</div><div class="hk-ev">PreToolUse · terraform destroy*</div><div class="hk-desc">terraform destroy 명령 감지 시 BLOCK · /tf-destroy 스킬로 안내</div></div></div>
+      <div class="hk"><div class="hk-ico">💾</div><div><div class="hk-name">post-apply-snapshot.sh</div><div class="hk-ev">PostToolUse · terraform apply*</div><div class="hk-desc">스냅샷 · infracost·/miro-update 권장 안내 (실비용 자동 조회 없음)</div></div></div>
+      <div class="hk"><div class="hk-ico">🚀</div><div><div class="hk-name">(참고)</div><div class="hk-ev">cc_edu</div><div class="hk-desc">post-deploy-full·az consumption 통합 스크립트는 사용하지 않음</div></div></div>
     </div>
   </div>
 </div>
@@ -905,15 +978,15 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <div class="slide" id="s20">
   <div class="layout">
     <div>
-      <p class="eyebrow">Module 06</p>
+      <p class="eyebrow">part2-7</p>
       <h2 style="color:#fff;font-size:2rem;margin-bottom:1rem">Skills & Agents</h2>
       <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:.6rem;font-family:'JetBrains Mono',monospace">Terraform 핵심 스킬</div>
       <div class="skill-list">
         <div class="sk"><span class="sk-cmd">/tf-init</span><div class="sk-body"><div class="sk-title">초기화</div><div class="sk-desc">Azure Storage 백엔드 · terraform init · provider 버전 확인</div></div></div>
-        <div class="sk"><span class="sk-cmd">/tf-plan</span><div class="sk-body"><div class="sk-title">플랜 검토</div><div class="sk-desc">plan -out=tfplan · 한국어 요약 · destroy 하이라이트 · 승인 확인</div></div></div>
+        <div class="sk"><span class="sk-cmd">/tf-plan</span><div class="sk-body"><div class="sk-title">플랜 검토</div><div class="sk-desc">plan -out=tfplan · infracost 예상 비용 · 병렬 에이전트</div></div></div>
         <div class="sk"><span class="sk-cmd">/tf-apply</span><div class="sk-body"><div class="sk-title">배포</div><div class="sk-desc">plan 파일 확인 → 요약 → 승인 → apply → /miro-update 자동 호출</div></div></div>
         <div class="sk"><span class="sk-cmd">/tf-destroy</span><div class="sk-body"><div class="sk-title">안전 삭제</div><div class="sk-desc">삭제 목록 표시 → "환경명 입력" 2차 승인 → destroy</div></div></div>
-        <div class="sk"><span class="sk-cmd">/cost-report</span><div class="sk-body"><div class="sk-title">비용 리포트</div><div class="sk-desc">Azure MCP cost_query → 서비스별/리소스별 분석</div></div></div>
+        <div class="sk"><span class="sk-cmd">/env-diff</span><div class="sk-body"><div class="sk-title">환경 비교</div><div class="sk-desc">dev/staging/prod state 리소스 차이</div></div></div>
         <div class="sk"><span class="sk-cmd">/miro-update</span><div class="sk-body"><div class="sk-title">다이어그램</div><div class="sk-desc">state 조회 → Miro MCP로 Hub-Spoke 자동 생성·업데이트</div></div></div>
       </div>
     </div>
@@ -922,7 +995,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
       <div class="agent-list">
         <div class="ag"><div class="ag-name">terraform-reviewer <span class="ag-badge">sonnet · maxTurns 15</span></div><ul class="ag-items"><li>보안: NSG 규칙, 공개 IP, 키 하드코딩</li><li>비용: SKU 적절성, 불필요한 리소스</li><li>태그: environment · owner · project 필수</li></ul></div>
         <div class="ag"><div class="ag-name">azure-validator <span class="ag-badge">sonnet · maxTurns 10</span></div><ul class="ag-items"><li>리소스 Running 상태 확인</li><li>VNet Peering · Private DNS Zone 연결 상태</li></ul></div>
-        <div class="ag"><div class="ag-name">cost-estimator <span class="ag-badge">sonnet · 신규</span></div><ul class="ag-items"><li>plan 분석 → Azure Pricing API 실시간 조회</li><li>SKU 최적화 대안 제시</li></ul></div>
+        <div class="ag"><div class="ag-name">cost-optimizer <span class="ag-badge">sonnet</span></div><ul class="ag-items"><li>plan 기준 SKU·크기 최적화 아이디어</li><li>실청구 조회 없음 — infracost와 병행</li></ul></div>
       </div>
     </div>
   </div>
@@ -932,7 +1005,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <div class="slide" id="s21">
   <div class="layout">
     <div>
-      <p class="eyebrow">Module 07</p>
+      <p class="eyebrow">part2-8</p>
       <h2 style="color:#fff;font-size:2.2rem">Azure Terraform<br>환경 셋업</h2>
       <div class="code-block" style="margin-top:.8rem">
         <div class="cb-bar"><div class="cb-dot" style="background:#ff5f57"></div><div class="cb-dot" style="background:#febc2e"></div><div class="cb-dot" style="background:#28c840"></div><span class="cb-title">providers.tf</span></div>
@@ -949,6 +1022,10 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
       <div style="margin-top:.8rem;padding:.8rem 1rem;border-radius:8px;background:rgba(0,194,168,.06);border:1px solid rgba(0,194,168,.12)">
         <div style="font-size:.72rem;color:var(--teal);font-family:'JetBrains Mono',monospace;margin-bottom:.3rem">Hub-Spoke 배포 예시</div>
         <div style="font-size:.75rem;color:var(--muted);line-height:1.6">"Hub: 10.0.0.0/16, Spoke1: 10.1.0.0/16, Spoke2: 10.2.0.0/16<br>Hub에 Bastion + Firewall 포함, VNet Peering, environment=dev 태그"</div>
+      </div>
+      <div style="margin-top:.6rem;padding:.6rem .9rem;border-radius:8px;background:rgba(255,214,0,.06);border:1px solid rgba(255,214,0,.15)">
+        <div style="font-size:.68rem;font-family:'JetBrains Mono',monospace;color:var(--gold);margin-bottom:.25rem">cc_edu</div>
+        <div style="font-size:.72rem;color:var(--muted);line-height:1.45">위 backend 블록은 <strong>교육 예시</strong>. 실제 레포는 환경별 <strong>로컬 state</strong> — <code>terraform/CLAUDE.md</code> 참고.</div>
       </div>
     </div>
     <div>
@@ -978,7 +1055,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <div class="slide" id="s22">
   <div class="layout">
     <div>
-      <p class="eyebrow">Module 08</p>
+      <p class="eyebrow">part2-9</p>
       <h2 style="color:#fff;font-size:2.2rem">Miro MCP<br>아키텍처 자동화</h2>
       <div class="miro-flow">
         <div class="mf-node" style="background:rgba(124,58,237,.15);color:#a78bfa"><span class="mf-icon">🔧</span>terraform apply 완료</div>
@@ -994,8 +1071,8 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
     </div>
     <div class="miro-tokens">
       <div class="mt-card"><div class="mt-title">🔑 토큰 발급 및 설정</div><ul class="mt-items"><li>miro.com → Profile → Apps → Create new app</li><li>Boards:read · Boards:write 권한 부여</li><li>Board URL에서 MIRO_BOARD_ID 추출</li><li>.env에 저장 · .claudeignore에 포함</li></ul></div>
-      <div class="mt-card"><div class="mt-title">🎯 /miro-update 스킬 동작</div><ul class="mt-items"><li>Terraform state → 리소스 유형별 분류</li><li>Hub VNet · Spoke VNet · Peering 레이아웃</li><li>각 리소스별 아이콘·연결선 자동 배치</li><li>비용 레이어 오버레이 추가</li><li>환경별 (dev/staging/prod) 컬러 코딩</li></ul></div>
-      <div style="padding:.7rem .9rem;border-radius:8px;background:rgba(255,214,0,.06);border:1px solid rgba(255,214,0,.15)"><div style="font-size:.7rem;font-family:'JetBrains Mono',monospace;color:var(--gold);margin-bottom:.3rem">PostHook 연동</div><div style="font-size:.75rem;color:var(--muted)">post-deploy-full.sh → [4/4] 단계에서<br>/miro-update dev 자동 실행 권고</div></div>
+      <div class="mt-card"><div class="mt-title">🎯 /miro-update 스킬 동작</div><ul class="mt-items"><li>Terraform state → 리소스 유형별 분류</li><li>Hub VNet · Spoke VNet · Peering 레이아웃</li><li>각 리소스별 아이콘·연결선 자동 배치</li><li>환경별 (dev/staging/prod) 컬러 코딩</li></ul></div>
+      <div style="padding:.7rem .9rem;border-radius:8px;background:rgba(255,214,0,.06);border:1px solid rgba(255,214,0,.15)"><div style="font-size:.7rem;font-family:'JetBrains Mono',monospace;color:var(--gold);margin-bottom:.3rem">PostHook</div><div style="font-size:.75rem;color:var(--muted)">post-apply-snapshot 성공 시<br>/miro-update 안내 (필요 시 수동)</div></div>
     </div>
   </div>
 </div>
@@ -1004,21 +1081,21 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <div class="slide" id="s23">
   <div class="layout">
     <div>
-      <p class="eyebrow">Module 09</p>
-      <h2 style="color:#fff;font-size:2.2rem">비용 계산<br>자동화</h2>
+      <p class="eyebrow">part2-10</p>
+      <h2 style="color:#fff;font-size:2.2rem">예상 비용<br>(infracost)</h2>
       <div class="cost-layers">
-        <div class="cl-card" style="border-left-color:var(--teal)"><div class="cl-title">① Plan 단계 — 예측 비용</div><div class="cl-desc">cost-estimator 에이전트: plan 분석 → Azure Pricing API → 예상 월 비용 → 승인 후 apply</div></div>
-        <div class="cl-card" style="border-left-color:var(--azure)"><div class="cl-title">② Apply 후 — 실비용 즉시 조회</div><div class="cl-desc">post-deploy-full.sh: az consumption → 오늘 비용 + 이번 달 누적 → $1,000 초과 경고</div></div>
-        <div class="cl-card" style="border-left-color:var(--orange)"><div class="cl-title">③ /cost-report — 상세 분석</div><div class="cl-desc">Azure MCP cost_query → 서비스별/리소스별 분류 → 이상 감지 → SKU 최적화 제안</div></div>
+        <div class="cl-card" style="border-left-color:var(--teal)"><div class="cl-title">① /tf-plan</div><div class="cl-desc">plan -out=tfplan → infracost breakdown — 예상 월 비용 (실청구 아님)</div></div>
+        <div class="cl-card" style="border-left-color:var(--azure)"><div class="cl-title">② 병렬 에이전트</div><div class="cl-desc">terraform-reviewer · plan-validator · cost-optimizer — SKU 점검</div></div>
+        <div class="cl-card" style="border-left-color:var(--orange)"><div class="cl-title">③ Apply 후</div><div class="cl-desc">실비용 자동 조회 없음 — PostHook이 infracost·Miro 안내만</div></div>
       </div>
     </div>
     <div class="cost-cmds">
       <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:.5rem;font-family:'JetBrains Mono',monospace">주요 프롬프트</div>
       <div class="cost-cmd"><div class="cc-label">예상 비용 확인</div><div class="cc-code">"dev 환경에 AKS 추가하면 비용이 얼마나 늘어?"</div></div>
-      <div class="cost-cmd"><div class="cc-label">실비용 리포트</div><div class="cc-code"><span class="kw">/cost-report</span> <span class="str">dev month</span></div></div>
-      <div class="cost-cmd"><div class="cc-label">멀티 환경 비교</div><div class="cc-code">"dev / staging / prod 이번 달 비용 비교 테이블"</div></div>
+      <div class="cost-cmd"><div class="cc-label">예상 비용 재확인</div><div class="cc-code"><span class="kw">/tf-plan</span> <span class="str">dev</span> → infracost 표만</div></div>
+      <div class="cost-cmd"><div class="cc-label">환경 비교</div><div class="cc-code"><span class="kw">/env-diff</span> — state 리소스 차이 (청구액 아님)</div></div>
       <div class="cost-cmd"><div class="cc-label">비용 최적화</div><div class="cc-code">"dev 환경 비용 절감 방안 — SKU 다운그레이드 포함"</div></div>
-      <div style="margin-top:.5rem;padding:.7rem .9rem;border-radius:8px;background:rgba(0,194,168,.06);border:1px solid rgba(0,194,168,.15)"><div style="font-size:.68rem;font-family:'JetBrains Mono',monospace;color:var(--teal);margin-bottom:.3rem">API 출처</div><div style="font-size:.72rem;color:var(--muted);line-height:1.5">prices.azure.com/api/retail/prices<br>Azure Consumption REST API</div></div>
+      <div style="margin-top:.5rem;padding:.7rem .9rem;border-radius:8px;background:rgba(0,194,168,.06);border:1px solid rgba(0,194,168,.15)"><div style="font-size:.68rem;font-family:'JetBrains Mono',monospace;color:var(--teal);margin-bottom:.3rem">도구</div><div style="font-size:.72rem;color:var(--muted);line-height:1.5">infracost.io · (참고) Azure Retail Prices API</div></div>
     </div>
   </div>
 </div>
@@ -1026,20 +1103,19 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <!-- S24 Module 10 -->
 <div class="slide" id="s24">
   <div class="inner">
-    <p class="eyebrow">Module 10</p>
+    <p class="eyebrow">part2-11</p>
     <h2 style="color:#fff;font-size:2.2rem;margin-bottom:1.5rem">실전 워크플로우</h2>
     <div class="pipeline">
       <div class="pl-step"><div class="pl-num" style="background:rgba(0,120,212,.2);color:var(--azure)">1</div><div class="pl-title" style="color:var(--azure)">요구사항<br>입력</div><ul class="pl-items"><li>Hub-Spoke 구조로 dev VNet 배포</li></ul></div>
       <div class="pl-step"><div class="pl-num" style="background:rgba(124,58,237,.2);color:#a78bfa">2</div><div class="pl-title" style="color:#a78bfa">코드 작성</div><ul class="pl-items"><li>TF MCP registry_search</li><li>validate + fmt 자동</li><li>terraform-reviewer 리뷰</li></ul></div>
-      <div class="pl-step"><div class="pl-num" style="background:rgba(0,194,168,.2);color:var(--teal)">3</div><div class="pl-title" style="color:var(--teal)">비용 예측</div><ul class="pl-items"><li>cost-estimator</li><li>Azure Pricing API</li><li>승인 후 진행</li></ul></div>
+      <div class="pl-step"><div class="pl-num" style="background:rgba(0,194,168,.2);color:var(--teal)">3</div><div class="pl-title" style="color:var(--teal)">예상 비용</div><ul class="pl-items"><li>/tf-plan</li><li>infracost</li><li>cost-optimizer</li></ul></div>
       <div class="pl-step"><div class="pl-num" style="background:rgba(245,129,63,.2);color:var(--orange)">4</div><div class="pl-title" style="color:var(--orange)">배포</div><ul class="pl-items"><li>PreHook: tflint+checkov</li><li>/tf-plan dev</li><li>/tf-apply dev</li></ul></div>
-      <div class="pl-step"><div class="pl-num" style="background:rgba(229,62,62,.2);color:#fc8181">5</div><div class="pl-title" style="color:#fc8181">배포 후<br>자동화</div><ul class="pl-items"><li>PostHook: 스냅샷</li><li>오늘/월 비용 조회</li><li>azure-validator</li></ul></div>
-      <div class="pl-step"><div class="pl-num" style="background:rgba(56,161,105,.2);color:#68d391">6</div><div class="pl-title" style="color:#68d391">비용<br>리포트</div><ul class="pl-items"><li>/cost-report dev month</li><li>서비스별 분석</li><li>최적화 제안</li></ul></div>
-      <div class="pl-step"><div class="pl-num" style="background:rgba(255,214,0,.15);color:var(--gold)">7</div><div class="pl-title" style="color:var(--gold)">시각화</div><ul class="pl-items"><li>/miro-update dev</li><li>Hub-Spoke 다이어그램</li><li>비용 레이어 추가</li></ul></div>
+      <div class="pl-step"><div class="pl-num" style="background:rgba(229,62,62,.2);color:#fc8181">5</div><div class="pl-title" style="color:#fc8181">배포 후</div><ul class="pl-items"><li>PostHook 스냅샷</li><li>infracost 안내</li><li>azure-validator</li></ul></div>
+      <div class="pl-step"><div class="pl-num" style="background:rgba(56,161,105,.2);color:#68d391">6</div><div class="pl-title" style="color:#68d391">시각화</div><ul class="pl-items"><li>/miro-update dev</li><li>Hub-Spoke 다이어그램</li></ul></div>
     </div>
     <div class="troubleshoot">
       <div class="ts"><div class="ts-sit">terraform apply 에러</div><div class="ts-mcp">Terraform MCP</div><div class="ts-how">에러 분석 → 수정 코드 제안</div></div>
-      <div class="ts"><div class="ts-sit">비용 이상 급증</div><div class="ts-mcp">Azure MCP</div><div class="ts-how">급증 리소스 특정 → 원인 분석</div></div>
+      <div class="ts"><div class="ts-sit">infracost 급증</div><div class="ts-mcp">tf-plan + cost-optimizer</div><div class="ts-how">plan 기준 SKU·리소스 점검</div></div>
       <div class="ts"><div class="ts-sit">VNet Peering 실패</div><div class="ts-mcp">Terraform MCP</div><div class="ts-how">의존성 순서 검토</div></div>
       <div class="ts"><div class="ts-sit">아키텍처 문서 최신화</div><div class="ts-mcp">Miro MCP + TF MCP</div><div class="ts-how">state 기준 다이어그램 재생성</div></div>
     </div>
@@ -1049,23 +1125,23 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <!-- S25 셋업 가이드 -->
 <div class="slide" id="s25">
   <div class="inner">
-    <p class="eyebrow">권장 초기 셋업 순서</p>
+    <p class="eyebrow">part2-12</p>
     <h2 style="color:#fff;font-size:2.2rem;margin-bottom:1rem">셋업 가이드</h2>
     <div class="setup-steps">
       <div class="ss"><div class="ss-num" style="background:rgba(0,194,168,.12);color:var(--teal)">01</div><div class="ss-title">Claude Code 설치</div><ul class="ss-items"><li>npm install -g @anthropic-ai/claude-code</li><li>claude auth login</li></ul></div>
       <div class="ss"><div class="ss-num" style="background:rgba(0,120,212,.12);color:var(--azure)">02</div><div class="ss-title">프로젝트 초기화</div><ul class="ss-items"><li>git init</li><li>claude /init</li><li>CLAUDE.md 자동 생성</li></ul></div>
       <div class="ss"><div class="ss-num" style="background:rgba(124,58,237,.12);color:#a78bfa">03</div><div class="ss-title">MCP 4종 등록</div><ul class="ss-items"><li>terraform (stdio)</li><li>azure (stdio)</li><li>github (http)</li><li>miro (stdio)</li></ul></div>
-      <div class="ss"><div class="ss-num" style="background:rgba(245,129,63,.12);color:var(--orange)">04</div><div class="ss-title">디렉토리 구조</div><ul class="ss-items"><li>.claude/skills/ 6종</li><li>.claude/agents/ 3종</li><li>.claude/hooks/ 2개</li></ul></div>
+      <div class="ss"><div class="ss-num" style="background:rgba(245,129,63,.12);color:var(--orange)">04</div><div class="ss-title">디렉토리 구조</div><ul class="ss-items"><li>.claude/rules/ (azure·terraform·mcp)</li><li>.claude/skills/ 7종</li><li>.claude/agents/ 4종 · hooks/</li></ul></div>
       <div class="ss"><div class="ss-num" style="background:rgba(229,62,62,.12);color:#fc8181">05</div><div class="ss-title">Azure 백엔드</div><ul class="ss-items"><li>create-backend.sh</li><li>Storage Account</li><li>tfstate 컨테이너</li></ul></div>
       <div class="ss"><div class="ss-num" style="background:rgba(56,161,105,.12);color:#68d391">06</div><div class="ss-title">첫 번째 배포</div><ul class="ss-items"><li>/tf-init dev</li><li>/tf-plan dev</li><li>/tf-apply dev</li></ul></div>
-      <div class="ss"><div class="ss-num" style="background:rgba(255,214,0,.1);color:var(--gold)">07</div><div class="ss-title">결과 확인</div><ul class="ss-items"><li>/cost-report today</li><li>/miro-update dev</li><li>PostHook 자동 실행</li></ul></div>
+      <div class="ss"><div class="ss-num" style="background:rgba(255,214,0,.1);color:var(--gold)">07</div><div class="ss-title">결과 확인</div><ul class="ss-items"><li>/tf-plan의 infracost 참고</li><li>/miro-update dev</li><li>PostHook 안내</li></ul></div>
     </div>
     <div class="git-table" style="margin-top:1rem">
       <div class="gt-head"><span>파일</span><span>git 공유</span><span>용도</span></div>
       <div class="gt-row"><span>CLAUDE.md · .mcp.json · settings.json</span><span class="yes">✅</span><span style="color:var(--muted)">팀 공통 설정</span></div>
       <div class="gt-row"><span>.claude/skills/ · .claude/agents/</span><span class="yes">✅</span><span style="color:var(--muted)">공유 워크플로우</span></div>
       <div class="gt-row"><span>settings.local.json · .env · *.tfvars</span><span class="no">❌</span><span style="color:var(--muted)">개인 설정 / 민감 정보</span></div>
-      <div class="gt-row"><span>.claude/snapshots/ · .claude/cost-reports/</span><span class="no">❌</span><span style="color:var(--muted)">배포 이력 / 비용 리포트</span></div>
+      <div class="gt-row"><span>.claude/snapshots/</span><span class="no">❌</span><span style="color:var(--muted)">배포 이력 스냅샷</span></div>
     </div>
   </div>
 </div>
@@ -1074,6 +1150,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <div class="slide" id="s26">
   <div class="orb o1"></div><div class="orb o2"></div>
   <div class="content">
+    <p class="eyebrow" style="margin-bottom:1rem">part2-13</p>
     <div class="big">END</div>
     <p class="tagline">Claude Code × Terraform × Azure — KT AX Engineering Team</p>
     <div class="refs">
@@ -1092,7 +1169,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
 <div id="nav">
   <button id="prev">‹</button>
   <div id="dots"></div>
-  <div id="slide-num">1 / 26</div>
+  <div id="slide-num">1 / 27</div>
   <button id="next">›</button>
 </div>
 <div class="src">출처: claude-code-concepts.md · claude-code-terraform-azure-education.md</div>
@@ -1104,16 +1181,16 @@ const slideNum = document.getElementById('slide-num');
 const nav = document.getElementById('nav');
 let cur = 0, hideTimer;
 
-// Build dots — part1 (0-12) teal, divider, part2 (13-25) azure
+// Build dots — part1 (0-13) teal, divider, part2 (14-26) azure
 slides.forEach((_,i) => {
-  if (i === 13) {
+  if (i === 14) {
     // divider between parts
     const div = document.createElement('div');
     div.className = 'dot-div';
     dotsEl.appendChild(div);
   }
   const d = document.createElement('div');
-  d.className = 'dot' + (i === 0 ? ' active' : '') + (i >= 13 ? ' part2' : '');
+  d.className = 'dot' + (i === 0 ? ' active' : '') + (i >= 14 ? ' part2' : '');
   d.onclick = () => go(i);
   dotsEl.appendChild(d);
 });
