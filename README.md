@@ -54,7 +54,7 @@ cp terraform/environments/dev/terraform.tfvars.example \
 | 명령어 | 설명 |
 |--------|------|
 | `/tf-init [env]` | Terraform 초기화 및 백엔드 설정 |
-| `/tf-plan [env]` | fmt → checkov → plan → 비용분석 |
+| `/tf-plan [env]` | fmt → checkov → plan → **infracost 예상 비용** (실비용/청구 조회 없음) |
 | `/tf-apply [env]` | staleness 체크 → apply → 리소스 검증 |
 | `/tf-destroy [env]` | 다중 확인 후 destroy |
 | `/tf-validate` | fmt + tflint + checkov 빠른 검증 |
@@ -65,7 +65,7 @@ cp terraform/environments/dev/terraform.tfvars.example \
 
 | MCP | 용도 | 인증 |
 |-----|------|------|
-| Azure | 리소스 조회/검증/비용 분석 | `az login` |
+| Azure | 리소스 조회/검증 (비용은 infracost만, 실청구 조회 안 함) | `az login` |
 | Terraform | plan/apply/state 조회 | 자동 |
 | GitHub | PR 생성/브랜치 관리 | `gh auth login` |
 | Miro | 아키텍처 다이어그램 생성 | `MIRO_ACCESS_TOKEN` 환경변수 |
@@ -82,7 +82,7 @@ export MIRO_AUTO_UPDATE=true   # apply 후 자동 다이어그램 업데이트
 | 훅 | 트리거 | 동작 |
 |----|--------|------|
 | `pre-destroy-guard.sh` | terraform destroy 실행 전 | 실행 차단 가드 |
-| `post-apply-snapshot.sh` | terraform apply 성공 후 | state 스냅샷 저장 |
+| `post-apply-snapshot.sh` | terraform apply 성공 후 | state 스냅샷 저장 + infracost·Miro **안내** (자동 실행 아님) |
 | `post-tf-edit-review.sh` | .tf 파일 편집 후 | terraform-reviewer 트리거 |
 | `notify-on-stop.sh` | Claude 응답 완료 시 | macOS 알림 |
 
