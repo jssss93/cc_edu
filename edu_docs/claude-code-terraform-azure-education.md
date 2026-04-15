@@ -1174,7 +1174,7 @@ terraform apply 성공 후(PostHook)
 
 #### 09.4 PostHook (현행: 안내 중심)
 
-실제 레포는 **`post-apply-snapshot.sh`** 가 `terraform apply` 성공 시 state 스냅샷을 저장하고, **예상 비용은 `/tf-plan`의 infracost를 참고하라는 한 줄 안내**와 Miro 권고를 출력한다.  
+실제 레포는 **`post-apply-snapshot.sh`** 가 `terraform apply` 성공 시 `memory/terraform_state.md` 를 갱신하고, **예상 비용은 `/tf-plan`의 infracost를 참고하라는 한 줄 안내**와 Miro 권고를 출력한다.  
 `post-deploy-full.sh` + `az consumption` 같은 **자동 실비용 조회 스크립트는 사용하지 않는다.**
 
 ---
@@ -1206,10 +1206,13 @@ terraform apply 성공 후(PostHook)
 ├── skills/
 │   ├── tf-init/ · tf-plan/ · tf-apply/ · tf-destroy/
 │   ├── tf-validate/ · miro-update/ · env-diff/
+├── scripts/
+│   └── memory-dir.sh              # ~/.claude/projects/…/memory 경로 출력
 ├── hooks/
 │   ├── pre-destroy-guard.sh · post-apply-snapshot.sh · …
-└── snapshots/
 ```
+
+에이전트 산출물·apply 후 state 요약은 `bash .claude/scripts/memory-dir.sh` 가 가리키는 `~/.claude/projects/<slug>/memory/` 에 저장한다.
 
 > **참고:** infracost — https://www.infracost.io/
 
@@ -1236,7 +1239,7 @@ terraform apply 성공 후(PostHook)
    └─ /tf-apply dev → Bash terraform apply tfplan (MCP apply는 deny)
 
 5. 배포 후 (PostHook)
-   └─ post-apply-snapshot: state 스냅샷 + infracost·Miro 안내 stdout
+   └─ post-apply-snapshot: memory/terraform_state.md 갱신 + infracost·Miro 안내 stdout
    └─ azure-validator
 
 6. 시각화 (선택)
@@ -1286,7 +1289,7 @@ claude "/tf-plan staging 후 infracost만 dev와 숫자 비교해줘"
 | `.claude/settings.local.json` | ❌ | 개인 오버라이드 |
 | `.env` | ❌ | Azure/Miro 토큰 |
 | `terraform.tfvars` | ❌ | 환경별 실제 값 |
-| `.claude/snapshots/` | ❌ | 배포 시점 state 스냅샷 |
+| `~/.claude/projects/<slug>/memory/` | ❌ | plan 검증 JSON·apply 후 state 요약 (레포 밖) |
 
 ---
 
@@ -1310,7 +1313,7 @@ claude mcp add --transport stdio miro     -- npx -y @mirohq/mcp-server
 claude mcp list   # 4개 확인
 
 # ── 4단계: 디렉토리 구조 생성 ──
-mkdir -p .claude/{skills,agents,hooks,snapshots}
+mkdir -p .claude/{skills,agents,hooks,scripts}
 mkdir -p .claude/skills/{tf-init,tf-plan,tf-apply,tf-destroy,tf-validate,miro-update,env-diff}
 mkdir -p .claude/agents/{terraform-reviewer,plan-validator,cost-optimizer,azure-validator}
 

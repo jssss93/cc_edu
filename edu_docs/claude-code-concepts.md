@@ -316,7 +316,6 @@ MCP 서버 프로세스 (npx/node/python 등)
 terraform.tfvars         # 실제 비밀값 (subscription_id 등)
 *.tfplan                 # plan 바이너리
 .claude/settings.local.json  # 개인 설정
-.claude/snapshots/       # 자동 생성 스냅샷
 *.pem, *.key             # 인증서/키 파일
 ```
 
@@ -534,21 +533,11 @@ if echo "$COMMAND" | grep -q "terraform destroy"; then
 fi
 ```
 
-**훅 2: post-apply-snapshot.sh** — 자동 백업
+**훅 2: post-apply-snapshot.sh** — memory에 state 요약
 
 - 이벤트: `PostToolUse` / 대상: `Bash`
-- 역할: 배포 후 state 자동 스냅샷
-- 동작: apply 성공 감지 → `terraform state list` 결과를 snapshots/ 에 저장
-
-```bash
-INPUT=$(cat)
-COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // ""')
-
-if echo "$COMMAND" | grep -q "terraform apply"; then
-  TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
-  terraform state list > ".claude/snapshots/state-${TIMESTAMP}.txt"
-fi
-```
+- 역할: 배포 후 `terraform state list` 를 프로젝트 메모리에 기록
+- 동작: apply 성공 감지 → `bash .claude/scripts/memory-dir.sh` 로 경로를 구한 뒤 그 아래 `terraform_state.md` 갱신 (레포의 `post-apply-snapshot.sh` 참고)
 
 **훅 3: post-tf-edit-review.sh** — 코드 리뷰 유도
 

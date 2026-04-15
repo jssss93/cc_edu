@@ -585,7 +585,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
     </div>
     <div class="hooks-grid">
       <div class="hcard"><div class="icon">🛡️</div><div><div class="hname">pre-destroy-guard.sh</div><div class="hevent">PreToolUse / Bash</div><div class="hdesc">terraform destroy 명령 감지 → BLOCK. /tf-destroy 스킬로 안내</div></div></div>
-      <div class="hcard"><div class="icon">💾</div><div><div class="hname">post-apply-snapshot.sh</div><div class="hevent">PostToolUse / Bash</div><div class="hdesc">apply 성공 후 terraform state list → snapshots/ 자동 저장</div></div></div>
+      <div class="hcard"><div class="icon">💾</div><div><div class="hname">post-apply-snapshot.sh</div><div class="hevent">PostToolUse / Bash</div><div class="hdesc">apply 성공 후 terraform state list → ~/.claude/projects/…/memory/terraform_state.md</div></div></div>
       <div class="hcard"><div class="icon">🔍</div><div><div class="hname">post-tf-edit-review.sh</div><div class="hevent">PostToolUse / Edit·Write</div><div class="hdesc">.tf 파일 편집 감지 → terraform-reviewer 에이전트 실행 권장</div></div></div>
       <div class="hcard"><div class="icon">🔔</div><div><div class="hname">notify-on-stop.sh</div><div class="hevent">Stop</div><div class="hdesc">장시간 작업 완료 시 macOS 알림 전송</div></div></div>
     </div>
@@ -968,7 +968,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
     </div>
     <div class="hook-cards">
       <div class="hk"><div class="hk-ico">🛡️</div><div><div class="hk-name">pre-destroy-guard.sh</div><div class="hk-ev">PreToolUse · terraform destroy*</div><div class="hk-desc">terraform destroy 명령 감지 시 BLOCK · /tf-destroy 스킬로 안내</div></div></div>
-      <div class="hk"><div class="hk-ico">💾</div><div><div class="hk-name">post-apply-snapshot.sh</div><div class="hk-ev">PostToolUse · terraform apply*</div><div class="hk-desc">스냅샷 · infracost·/miro-update 권장 안내 (실비용 자동 조회 없음)</div></div></div>
+      <div class="hk"><div class="hk-ico">💾</div><div><div class="hk-name">post-apply-snapshot.sh</div><div class="hk-ev">PostToolUse · terraform apply*</div><div class="hk-desc">memory/terraform_state.md · infracost·/miro-update 권장 안내 (실비용 자동 조회 없음)</div></div></div>
       <div class="hk"><div class="hk-ico">🚀</div><div><div class="hk-name">(참고)</div><div class="hk-ev">cc_edu</div><div class="hk-desc">post-deploy-full·az consumption 통합 스크립트는 사용하지 않음</div></div></div>
     </div>
   </div>
@@ -1141,7 +1141,7 @@ h1,h2,h3,.big,.ttl,#s1 h1,#s14 h1{font-family:'Bebas Neue',sans-serif!important;
       <div class="gt-row"><span>CLAUDE.md · .mcp.json · settings.json</span><span class="yes">✅</span><span style="color:var(--muted)">팀 공통 설정</span></div>
       <div class="gt-row"><span>.claude/skills/ · .claude/agents/</span><span class="yes">✅</span><span style="color:var(--muted)">공유 워크플로우</span></div>
       <div class="gt-row"><span>settings.local.json · .env · *.tfvars</span><span class="no">❌</span><span style="color:var(--muted)">개인 설정 / 민감 정보</span></div>
-      <div class="gt-row"><span>.claude/snapshots/</span><span class="no">❌</span><span style="color:var(--muted)">배포 이력 스냅샷</span></div>
+      <div class="gt-row"><span>~/.claude/projects/…/memory/</span><span class="no">❌</span><span style="color:var(--muted)">plan JSON·state 요약 (레포 밖)</span></div>
     </div>
   </div>
 </div>
