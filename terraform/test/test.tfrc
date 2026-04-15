@@ -1,0 +1,8 @@
+# 테스트 전용 Terraform CLI 설정
+# Nexus 미러 인증서 만료 우회 → 로컬 캐시 우선, 없으면 registry.terraform.io 직접 다운로드
+
+plugin_cache_dir = "/Users/jongsu/.terraform.d/plugin-cache"
+
+provider_installation {
+  direct {}
+}
