@@ -1,0 +1,12 @@
+# 원격 state(azurerm) 예시 — 팀에서 Azure Storage backend를 쓸 때 참고.
+# cc_edu 기본 운영은 환경별 디렉터리의 로컬 terraform.tfstate (루트 CLAUDE.md · terraform/CLAUDE.md).
+# 사용 시 리소스 그룹·스토리지 이름 등을 실제 값으로 바꾼 뒤 환경 providers.tf와 맞춘다.
+
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "rg-tfstate-example-krc"
+    storage_account_name = "sttfstateexample001"
+    container_name       = "tfstate"
+    key                  = "example.terraform.tfstate"
+  }
+}
