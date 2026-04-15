@@ -23,25 +23,43 @@ alwaysApply: true
 - Miro MCP: create_board_item, update_board_item, get_board_items.
 
 ### 거부(deny) — **반드시 준수**
-- `Bash(rm -rf *)` 패턴에 해당하는 파괴적 삭제를 자동으로 수행하지 않는다.
-- `Bash(az group delete *)` 를 실행하지 않는다.
+- 파괴적 삭제: Claude는 `Bash(rm -rf *)`, Cursor CLI는 `Shell(rm -rf *)` 거부에 해당한다.
+- `az group delete` 는 Claude `Bash(az group delete *)` / Cursor `Shell(az group delete *)` 와 같이 거부한다.
 - **Terraform MCP**의 `terraform_apply`, `terraform_destroy` 는 호출하지 않는다. 배포·삭제는 Bash의 `terraform apply …`, `terraform plan -destroy -out=tfplan` + `terraform apply tfplan` 등 **프로젝트 스킬** 절차를 따른다.
 
-## 훅(hooks) — Cursor 한계
+## 훅(hooks)
 
-Claude Code의 `PreToolUse` / `PostToolUse` / `Stop` / `SubagentStart` 훅은 Cursor에 **동일 이식 불가**. 다음을 **수동으로 동등하게** 맞춘다.
+### Cursor (자동)
 
-| Claude 훅 | 역할 | Cursor에서의 대응 |
-|-----------|------|-------------------|
-| `pre-destroy-guard.sh` | `terraform destroy` 직접 실행 차단 | `terraform destroy` 문자열 대신 **`plan -destroy` + `apply tfplan`** 사용 ([`.claude/skills/tf-destroy/SKILL.md`](.claude/skills/tf-destroy/SKILL.md)). |
-| `pre-push-tf-check.sh` | 푸시 전 검사 | 푸시 전 로컬에서 `terraform fmt` / `validate` 등을 실행하는 습관 또는 Git hook 유지. |
-| `notify-on-tool.sh` (async) | 도구 사용 알림 | 필요 시 로컬 알림 스크립트를 별도로 실행. |
-| `post-apply-snapshot.sh` | apply 후 스냅샷 | apply 성공 후 `.claude/snapshots` 절차를 문서대로 수동 실행. |
-| `post-tf-edit-review.sh` | .tf 편집 후 리뷰 | `.tf` 저장 후 plan/리뷰 체크리스트를 스스로 수행. |
-| SubagentStart / Stop 알림 | macOS 알림 | 선택 사항. |
+프로젝트 [`.cursor/hooks.json`](.cursor/hooks.json) + [`.cursor/hooks/`](.cursor/hooks/) 가 **Claude Code 훅과 비슷한 순간**에 같은 셸 스크립트를 호출한다 (stdin 형식만 Cursor용 어댑터에서 맞춤).
+
+| Cursor 이벤트 | 대응하는 Claude 스크립트 / 동작 |
+|----------------|----------------------------------|
+| `beforeShellExecution` (terraform destroy 패턴) | `.claude/hooks/pre-destroy-guard.sh` |
+| `beforeShellExecution` (git push) | `.claude/hooks/pre-push-tf-check.sh` |
+| `beforeMCPExecution` (terraform_apply / terraform_destroy) | MCP 직접 apply·destroy 차단 (settings deny 와 동일 정책) |
+| `postToolUse` (Shell) | `.claude/hooks/post-apply-snapshot.sh` → memory `terraform_state.md` |
+| `afterFileEdit` (Write) | `.claude/hooks/post-tf-edit-review.sh` |
+| `preToolUse` (MCP:) | macOS 알림 (Claude `notify-on-tool` 축소판) |
+| `subagentStart` | 서브에이전트 시작 알림 |
+| `stop` | `.claude/hooks/notify-on-stop.sh` 와 동일 알림 |
+
+훅이 안 뜨면 Cursor 재시작 후 **Hooks** 출력 채널을 확인한다. `notify-on-tool.sh` 의 **모든** 툴 비동기 알림은 Cursor에서 1:1로 복제하지 않았다.
+
+### 수동(훅 밖)
+
+| 상황 | 대응 |
+|------|------|
+| Cursor 비 Agent 모드 / 훅 비적용 환경 | 위 표와 [`.claude/skills/tf-destroy/SKILL.md`](.claude/skills/tf-destroy/SKILL.md) 를 **직접** 따른다. |
+| `post-tf-edit-review` | `.tf` 저장 후 plan·terraform-reviewer 흐름을 스스로 수행. |
 
 프로젝트 루트 [`CLAUDE.md`](CLAUDE.md)의 MCP apply/destroy 금지 설명과 이 규칙을 함께 따른다.
 
 ## Cursor CLI
 
-이 저장소의 [`.cursor/cli.json`](.cursor/cli.json)은 위 **deny 의도**를 CLI 권한 패턴으로 반영한다. 문법이 환경에 따라 다를 수 있으므로, 거부가 먹지 않으면 Cursor 문서의 Permissions를 확인해 패턴을 조정한다.
+[`.cursor/cli.json`](.cursor/cli.json)은 Cursor 문서 권장대로 **`version`: 1**, **`editor.vimMode`**, **`permissions.allow` / `permissions.deny`** 를 두고, **`.claude/settings.json`의 allow·deny와 동일한 셸·MCP 목록**을 `Shell` / `Mcp` 패턴으로 미러한다. `approvalMode`: `allowlist` 는 Claude의 `defaultMode`: `acceptEdits` 와 같이 **허용 목록 밖 도구는 승인 요청**으로 맞추는 쪽에 가깝다.
+
+- **모델**(`claude-sonnet-4-6` 등)은 Cursor **에디터·CLI 모델 선택**으로 맞춘다. 프로젝트 `cli.json`은 [공식 안내](https://cursor.com/docs/cli/reference/configuration)대로 권한 위주이며, 전역 동작은 `~/.cursor/cli-config.json` 이다.
+- **GitHub MCP** 항목은 Claude 설정과 동일하게 허용돼 있으나, 서버가 `.mcp.json`에 없으면 도구는 붙지 않는다. 쓰려면 MCP에 `github` 서버를 추가한다.
+
+스킬(`/tf-plan` 등)은 [cc-edu-claude-skills](cc-edu-claude-skills.mdc) 규칙대로 **`.claude/skills/*/SKILL.md` 단일 정본**을 Read 한다.

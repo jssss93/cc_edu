@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "command": ".cursor/hooks/cc-terraform-destroy-block.sh",
+        "matcher": "terraform.*\\bdestroy\\b"
+      },
+      {
+        "command": ".cursor/hooks/cc-git-push-tf-check.sh",
+        "matcher": "git push"
+      }
+    ],
+    "beforeMCPExecution": [
+      {
+        "command": ".cursor/hooks/cc-mcp-terraform-apply-block.sh",
+        "matcher": "terraform_"
+      }
+    ],
+    "postToolUse": [
+      {
+        "command": ".cursor/hooks/cc-post-terraform-apply-memory.sh",
+        "matcher": "Shell"
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": ".cursor/hooks/cc-post-tf-edit-hint.sh",
+        "matcher": "Write"
+      }
+    ],
+    "preToolUse": [
+      {
+        "command": ".cursor/hooks/cc-notify-pre-tool.sh",
+        "matcher": "^MCP:"
+      }
+    ],
+    "subagentStart": [
+      {
+        "command": ".cursor/hooks/cc-notify-subagent-start.sh"
+      }
+    ],
+    "stop": [
+      {
+        "command": ".cursor/hooks/cc-notify-stop.sh"
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+---
+description: Claude Code .claude/agents 역할을 Cursor Agent에서 재현할 때 참조 (AGENT.md 직접 읽기)
+alwaysApply: true
+---
+
+# Claude Code 에이전트 → Cursor에서의 쓰임
+
+Cursor에는 `.claude/agents/` 를 자동으로 띄우는 **별도 서브에이전트 엔진이 없다.** 대신 아래 **역할이 필요할 때** 해당 `AGENT.md` 를 **Read로 열고**, 그 지시를 그대로 따른다 (도구·MCP는 프로젝트 규칙과 `cli.json` 허용 범위 안에서).
+
+| 역할 | 파일 | 언제 열지 |
+|------|------|-----------|
+| Plan 검증 체크리스트 | `.claude/agents/plan-validator/AGENT.md` | `/tf-plan` 이후·배포 전 검증 항목을 JSON으로 만들 때 |
+| 배포 후 Azure 검증 | `.claude/agents/azure-validator/AGENT.md` | `terraform apply` 직후 리소스·피어링·태그 검증 |
+| 비용·SKU 점검 | `.claude/agents/cost-optimizer/AGENT.md` | plan 변경에 따른 SKU·크기 최적화 논의 |
+| Terraform 코드 리뷰 | `.claude/agents/terraform-reviewer/AGENT.md` | `.tf` 대규모 변경·리뷰 요청 시 |
+
+체크리스트 저장 경로·memory 경로는 `.claude/CLAUDE.md` 및 `bash .claude/scripts/memory-dir.sh` 를 따른다.

@@ -1,0 +1,20 @@
+---
+description: Cursor에서 Terraform·Miro 워크플로 — .claude/skills SKILL.md 를 단일 정본으로 Read
+alwaysApply: true
+---
+
+# 스킬 (단일 정본: `.claude/skills/`)
+
+Cursor에는 Claude Code의 `/스킬명` 라우터가 없다. 사용자가 아래 **트리거**에 해당하는 작업을 하면 **해당 `SKILL.md` 를 Read**하고, 그 안의 단계·제약을 **그대로** 따른다. (도구·MCP·deny: [`.cursor/cli.json`](.cursor/cli.json), [cc-edu-claude-parity](cc-edu-claude-parity.mdc), [mcp-project](mcp-project.mdc))
+
+| 트리거 예시 | 절차 파일 (정본) |
+|-------------|------------------|
+| `/tf-init`, terraform init | [`.claude/skills/tf-init/SKILL.md`](.claude/skills/tf-init/SKILL.md) |
+| `/tf-plan`, plan, infracost | [`.claude/skills/tf-plan/SKILL.md`](.claude/skills/tf-plan/SKILL.md) |
+| `/tf-apply`, apply tfplan | [`.claude/skills/tf-apply/SKILL.md`](.claude/skills/tf-apply/SKILL.md) |
+| `/tf-destroy`, destroy 절차 | [`.claude/skills/tf-destroy/SKILL.md`](.claude/skills/tf-destroy/SKILL.md) |
+| `/tf-validate`, fmt·tflint·checkov | [`.claude/skills/tf-validate/SKILL.md`](.claude/skills/tf-validate/SKILL.md) |
+| `/miro-update`, Miro 다이어그램 | [`.claude/skills/miro-update/SKILL.md`](.claude/skills/miro-update/SKILL.md) |
+| `/env-diff`, 환경 간 state 비교 | [`.claude/skills/env-diff/SKILL.md`](.claude/skills/env-diff/SKILL.md) |
+
+Claude 스킬의 **Bash** 지시는 Cursor에서 **Shell** 로 동일 처리. MCP `terraform_apply` / `terraform_destroy` 는 호출하지 않는다.

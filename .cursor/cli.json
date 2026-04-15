@@ -1,4 +1,8 @@
 {
+  "version": 1,
+  "editor": {
+    "vimMode": false
+  },
   "approvalMode": "allowlist",
   "permissions": {
     "allow": [
@@ -34,7 +38,13 @@
       "Mcp(azure, monitor)",
       "Mcp(azure, advisor)",
       "Mcp(azure, resourcehealth)",
-      "Mcp(miro, *)"
+      "Mcp(github, get_file_contents)",
+      "Mcp(github, create_pull_request)",
+      "Mcp(github, create_branch)",
+      "Mcp(github, push_files)",
+      "Mcp(miro, create_board_item)",
+      "Mcp(miro, update_board_item)",
+      "Mcp(miro, get_board_items)"
     ],
     "deny": [
       "Shell(rm -rf *)",
