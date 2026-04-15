@@ -1,12 +1,18 @@
-# Terraform 생성 파일
+# Terraform 생성 파일 · plan 산출물 (민감할 수 있음)
 .terraform/
 *.tfstate
 *.tfstate.backup
 .terraform.lock.hcl
 terraform.tfplan
+tfplan
 
-# 민감 정보
+# 민감 정보 — gitignore와 동기화 (Claude Read 제외)
+*.tfvars
 !terraform.tfvars.example
+*.auto.tfvars
+.env
+.env.*
+!.env.example
 *.pem
 *.key
 
@@ -20,6 +26,9 @@ Thumbs.db
 
 # Claude Code 로컬 파일
 .claude/settings.local.json
+.claude/scheduled_tasks.lock
+.claude/last-output.json
+
 .omc/
 # 교육 자료 (컨텍스트 제외)
 edu_docs/

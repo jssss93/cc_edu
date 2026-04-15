@@ -9,7 +9,10 @@ tfplan
 # 민감 정보
 *.tfvars
 !terraform.tfvars.example
+*.auto.tfvars
 .env
+.env.*
+!.env.example
 *.pem
 *.key
 
