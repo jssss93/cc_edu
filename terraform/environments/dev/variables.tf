@@ -49,3 +49,15 @@ variable "acr_sku" {
   type        = string
   default     = "Basic"
 }
+
+variable "static_web_app_sku" {
+  description = "Static Web App SKU 티어 (Free, Standard)"
+  type        = string
+  default     = "Free"
+}
+
+variable "static_web_app_location" {
+  description = "Static Web App 리전 (koreacentral 미지원 — westus2/centralus/eastus2/westeurope/eastasia 중 선택)"
+  type        = string
+  default     = "eastasia"
+}

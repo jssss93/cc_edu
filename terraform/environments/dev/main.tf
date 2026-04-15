@@ -167,6 +167,19 @@ resource "azurerm_container_registry" "main" {
   tags = local.common_tags
 }
 
+# Static Web App (의도적 오류 포함 — 교육용)
+resource "azurerm_static_web_app" "main" {
+  name                = "stapp-${var.project}-${var.environment}"
+  resource_group_name = azurerm_resource_group.spoke.name
+  # koreacentral 미지원 → 가장 가까운 지원 리전 사용
+  location = var.static_web_app_location
+
+  # ✅ 수정 1: sku_name → sku_tier (올바른 속성명)
+  sku_tier = var.static_web_app_sku
+
+  tags = local.common_tags
+}
+
 # VNet 피어링 모듈 (Hub VNet 생성 이후 설정)
 module "vnet_peering" {
   source = "../../modules/vnet-peering"
