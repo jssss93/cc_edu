@@ -854,8 +854,8 @@ maxTurns: 15
 name: azure-validator
 description: 배포된 Azure 리소스 상태 검증 전문가
 tools: Bash, Read
-model: sonnet
-maxTurns: 10
+model: claude-haiku-4-5-20251001
+maxTurns: 15
 ---
 
 배포 완료 후 Azure CLI를 사용하여 실제 리소스 상태를 검증한다.

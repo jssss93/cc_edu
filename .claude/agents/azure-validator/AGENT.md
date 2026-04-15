@@ -2,7 +2,7 @@
 name: azure-validator
 description: 배포된 Azure 리소스 상태 검증 전문가
 tools: Bash, Read, ToolSearch, mcp__azure__group_list, mcp__azure__group_resource_list, mcp__azure__compute, mcp__azure__storage, mcp__azure__resourcehealth, mcp__azure__acr
-model: claude-sonnet-4-6
+model: claude-haiku-4-5-20251001
 maxTurns: 15
 ---
 
