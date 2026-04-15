@@ -1,18 +1,16 @@
 ---
 name: tf-init
-description: Terraform 초기화 및 Azure 백엔드 설정
+description: Terraform 초기화 (로컬 state 기본, 선택 시 원격 backend)
 argument-hint: "[환경명: dev|staging|prod]"
 allowed-tools: Bash, Read, Write
 ---
 
 $ARGUMENTS 환경으로 Terraform을 초기화한다.
 
-1. backend 설정 파일 생성 (Azure Storage Account)
+1. **백엔드**: 본 레포(cc_edu) 기본은 환경 디렉터리 **로컬 state** — [CLAUDE.md](../../CLAUDE.md), [terraform/CLAUDE.md](../../terraform/CLAUDE.md). 원격 `azurerm` backend가 필요하면 팀 표준에 맞게 구성 (예시: [terraform/backend.tf.template](../../terraform/backend.tf.template)).
 2. `terraform init` 실행
 3. provider 버전 확인
 4. `.terraform.lock.hcl` 생성 확인
-
-백엔드 설정 참고: [backend.tf.template](backend.tf.template)
 
 ## 코드 생성 시 준수 규칙
 - 주석은 한국어로 작성
