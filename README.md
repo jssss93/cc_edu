@@ -82,7 +82,7 @@ export MIRO_AUTO_UPDATE=true   # apply 후 자동 다이어그램 업데이트
 | 훅 | 트리거 | 동작 |
 |----|--------|------|
 | `pre-destroy-guard.sh` | terraform destroy 실행 전 | 실행 차단 가드 |
-| `post-apply-snapshot.sh` | terraform apply 성공 후 | state 스냅샷 저장 + infracost·Miro **안내** (자동 실행 아님) |
+| `post-apply-snapshot.sh` | terraform apply 성공 후 | `~/.claude/projects/…/memory/terraform_state.md` 갱신 + infracost·Miro **안내** (자동 실행 아님) |
 | `post-tf-edit-review.sh` | .tf 파일 편집 후 | terraform-reviewer 트리거 |
 | `notify-on-stop.sh` | Claude 응답 완료 시 | macOS 알림 |
 

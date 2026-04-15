@@ -19,8 +19,16 @@ cc_edu/
 ├── .gitignore
 ├── .mcp.json                          # MCP 서버 설정 (Azure, Terraform, Miro, GitHub)
 ├── .claude/                           # Claude Code 설정 → .claude/CLAUDE.md 참조
+├── .cursor/                           # Cursor: hooks.json + hooks/ + rules/ (Claude 훅·권한과 유사하게 맞춤)
 └── terraform/                         # Terraform 코드 → terraform/CLAUDE.md 참조
 ```
+
+## Cursor (에이전트·CLI)
+
+- 훅: [`.cursor/hooks.json`](.cursor/hooks.json) 이 `.claude/hooks/*.sh` 를 Cursor 이벤트에 연결한다.
+- 권한: [`.cursor/cli.json`](.cursor/cli.json) · [`.cursor/rules/cc-edu-claude-parity.mdc`](.cursor/rules/cc-edu-claude-parity.mdc)
+- 스킬: [`.cursor/rules/cc-edu-claude-skills.mdc`](.cursor/rules/cc-edu-claude-skills.mdc) → 정본은 `.claude/skills/*/SKILL.md` 만 Read
+- 에이전트 역할: [`.cursor/rules/cc-edu-claude-agents.mdc`](.cursor/rules/cc-edu-claude-agents.mdc) (`.claude/agents/*/AGENT.md` 를 필요 시 Read)
 
 ## Claude Code 권한·배포 (교육 자료 “MCP apply/destroy 금지”와의 관계)
 
