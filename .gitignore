@@ -23,5 +23,9 @@ Thumbs.db
 
 # Claude Code 로컬 파일
 .claude/settings.local.json
-.claude/snapshots/
+.claude/scheduled_tasks.lock
+.claude/last-output.json
+
+# Oh My Claude Code / 로컬 플러그인 상태 (커밋 제외)
+.omc/
 
