@@ -52,7 +52,7 @@ destroy/replace 항목은 위험 플래그(`danger: true`)로 표시한다.
 
 ### 3단계: JSON 파일 생성
 
-아래 스키마로 `.claude/snapshots/validation-checklist-{env}.json` 파일을 생성(또는 덮어쓰기)한다.
+저장 디렉터리: 레포 루트에서 `bash .claude/scripts/memory-dir.sh` 를 실행해 얻은 절대경로(= `~/.claude/projects/<slug>/memory/`). 디렉터리가 없으면 `mkdir -p` 로 만든 뒤, 아래 스키마로 그 아래에 `validation-checklist-{env}.json` 을 생성(또는 덮어쓰기)한다.
 
 ```json
 {
@@ -99,7 +99,7 @@ destroy/replace 항목은 위험 플래그(`danger: true`)로 표시한다.
 ---
 ## 📋 검증 체크리스트 생성 완료
 
-**파일**: `.claude/snapshots/validation-checklist-{env}.json`
+**파일**: `$(bash .claude/scripts/memory-dir.sh)/validation-checklist-{env}.json` (절대경로로 저장)
 **총 검증 항목**: N개 (P0: N | P1: N | P2: N)
 
 | 우선순위 | 항목 | 트리거 리소스 |

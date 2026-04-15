@@ -20,7 +20,6 @@ Thumbs.db
 
 # Claude Code 로컬 파일
 .claude/settings.local.json
-.claude/snapshots/
-
+.omc/
 # 교육 자료 (컨텍스트 제외)
 edu_docs/

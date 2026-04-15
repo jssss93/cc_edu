@@ -12,10 +12,7 @@ maxTurns: 15
 
 ## 검증 항목 결정 (체크리스트 우선)
 
-검증 시작 전 **반드시** 아래 경로의 체크리스트 파일 존재 여부를 확인한다:
-```
-.claude/snapshots/validation-checklist-{env}.json
-```
+검증 시작 전 **반드시** 체크리스트 파일 존재 여부를 확인한다. 경로는 레포 루트에서 `bash .claude/scripts/memory-dir.sh` 로 구한 디렉터리 아래 `validation-checklist-{env}.json` 이다 (절대경로).
 
 - **파일 존재 시**: 파일을 읽어 `validation_items` 배열의 항목만 검증한다. P0 → P1 → P2 순서로 실행. 고정 6단계 절차 대신 이 목록을 기준으로 동작한다.
 - **파일 없을 시**: 아래 기본 검증 절차(1~6단계)를 모두 실행한다.
