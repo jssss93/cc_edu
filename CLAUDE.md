@@ -11,13 +11,18 @@
 ## 참고 파일
 See @terraform/variables.tf for variable definitions
 
+## 민감정보 (Claude Code)
+
+- **읽기 차단**: 루트 [`.claudeignore`](.claudeignore)에 `tfvars`·`.env`·키 등이 있으면 Claude가 해당 파일을 컨텍스트로 읽지 않는다.
+- **행동 규칙**: [`.claude/rules/secrets.md`](.claude/rules/secrets.md) — 답변·코드·memory 인용 시 비밀 실값 금지, 마스킹·변수 참조만.
+
 ## 폴더 구조
 
 ```
 cc_edu/
 ├── CLAUDE.md                          # 프로젝트 전역 지시사항
 ├── .gitignore
-├── .mcp.json                          # MCP 서버 설정 (Azure, Terraform, Miro, GitHub)
+├── .mcp.json                          # MCP 서버 (Terraform · Azure · Miro; GitHub는 팀/설정 시 선택)
 ├── .claude/                           # Claude Code 설정 → .claude/CLAUDE.md 참조
 ├── .cursor/                           # Cursor: hooks.json + hooks/ + rules/ (Claude 훅·권한과 유사하게 맞춤)
 └── terraform/                         # Terraform 코드 → terraform/CLAUDE.md 참조
