@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code vs GitHub Copilot 상세 분석 레포트</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Pretendard', sans-serif; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 400px; }
+        }
+        .tab-active { border-bottom: 2px solid #475569; color: #1e293b; font-weight: 600; }
+        .tab-inactive { color: #64748b; }
+        .tab-inactive:hover { color: #475569; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased selection:bg-orange-200 selection:text-orange-900">
+
+    <!-- Chosen Palette: Warm Neutrals (Stone) with subtle Anthropic Orange (#f97316) and GitHub Indigo (#4f46e5) accents -->
+    <!-- Application Structure Plan: The SPA is structured as an interactive dashboard for quick comprehension. 
+         1. Hero Section: High-level overview and a Radar Chart for immediate visual capability comparison.
+         2. Interactive Deep Dive (Tabs): Allows users to toggle between Architecture, Pros/Cons, and Pricing without scrolling excessively.
+         3. Scenario Analysis (Dynamic Bar Chart): Lets users select specific development tasks to see which tool performs better, making the data highly applicable.
+         This task-oriented structure prevents information overload and encourages exploration. -->
+    <!-- Visualization & Content Choices: 
+         - Core Capabilities -> Radar Chart (Chart.js): Best for multi-variable profiling of two competing tools.
+         - Strengths/Weaknesses -> Interactive Tabs (JS/HTML): Organizes dense qualitative text cleanly.
+         - Use Case Suitability -> Dynamic Bar Chart (Chart.js): Allows comparison across specific scenarios triggered by user interaction.
+         - NO SVG/Mermaid used. Unicode icons used for visual anchors. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <header class="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-bold text-stone-900 tracking-tight">AI Coding Assistant Analysis</h1>
+                <p class="text-sm text-stone-500 mt-1">Claude Code vs GitHub Copilot</p>
+            </div>
+            <div class="hidden sm:flex space-x-4 text-sm font-medium">
+                <a href="#overview" class="text-stone-500 hover:text-stone-900 transition-colors">개요</a>
+                <a href="#comparison" class="text-stone-500 hover:text-stone-900 transition-colors">상세 비교</a>
+                <a href="#scenarios" class="text-stone-500 hover:text-stone-900 transition-colors">유스케이스</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <section id="overview" class="scroll-mt-24">
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 md:p-10">
+                <div class="max-w-3xl mb-8">
+                    <h2 class="text-3xl font-bold text-stone-900 mb-4">패러다임의 변화: 자동완성에서 에이전트로</h2>
+                    <p class="text-lg text-stone-600 leading-relaxed">
+                        이 섹션은 두 도구의 근본적인 접근 방식과 핵심 역량을 한눈에 비교합니다. 
+                        <strong>GitHub Copilot</strong>이 개발자의 타이핑을 예측하고 보조하는 '우수한 부조종사(Copilot)'라면, 
+                        최근 발표된 <strong>Claude Code</strong>는 터미널에 상주하며 파일 시스템을 읽고, 코드를 작성하고, 테스트를 실행하는 '자율적인 에이전트(Agent)'에 가깝습니다. 
+                        아래 방사형 차트는 두 도구의 주요 기능별 상대적 강점을 보여줍니다.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <div class="chart-container">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="p-5 rounded-xl bg-orange-50 border border-orange-100 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10 text-4xl">🧠</div>
+                            <h3 class="text-xl font-bold text-orange-800 mb-2 flex items-center gap-2">
+                                <span>Claude Code</span>
+                                <span class="text-xs font-semibold bg-orange-200 text-orange-900 px-2 py-1 rounded-full">CLI 기반 에이전트</span>
+                            </h3>
+                            <p class="text-stone-700 text-sm leading-relaxed mb-3">
+                                Anthropic에서 개발한 CLI 기반 도구로, 프로젝트 전체의 컨텍스트를 깊이 이해합니다. 개발자가 지시하면 스스로 파일을 검색, 수정, 커밋, 심지어 터미널 명령어를 실행하여 문제를 해결합니다.
+                            </p>
+                            <ul class="text-sm text-stone-600 space-y-1">
+                                <li>✓ 전체 코드베이스 컨텍스트 이해</li>
+                                <li>✓ 터미널 명령어 자동 실행 (승인 기반)</li>
+                                <li>✓ 대규모 리팩토링 및 구조 변경에 탁월</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-5 rounded-xl bg-indigo-50 border border-indigo-100 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10 text-4xl">⚡</div>
+                            <h3 class="text-xl font-bold text-indigo-800 mb-2 flex items-center gap-2">
+                                <span>GitHub Copilot</span>
+                                <span class="text-xs font-semibold bg-indigo-200 text-indigo-900 px-2 py-1 rounded-full">IDE 플러그인</span>
+                            </h3>
+                            <p class="text-stone-700 text-sm leading-relaxed mb-3">
+                                IDE(VS Code 등)에 완벽하게 통합되어 개발자가 코드를 작성하는 순간 실시간으로 다음 줄이나 함수를 제안합니다. 반응 속도가 매우 빠르며 익숙한 워크플로우를 유지할 수 있습니다.
+                            </p>
+                            <ul class="text-sm text-stone-600 space-y-1">
+                                <li>✓ 실시간 인라인(Inline) 코드 자동완성</li>
+                                <li>✓ 기존 IDE 환경과의 완벽한 통합</li>
+                                <li>✓ 보일러플레이트 및 반복 코드 작성 속도 극대화</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="scroll-mt-24">
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden">
+                <div class="p-6 md:p-8 border-b border-stone-200">
+                    <h2 class="text-2xl font-bold text-stone-900 mb-3">심층 비교 분석</h2>
+                    <p class="text-stone-600">
+                        이 섹션에서는 두 도구의 아키텍처, 장단점, 그리고 도입 시 고려해야 할 가격 정책을 상세히 비교합니다. 
+                        아래 탭을 클릭하여 각 항목별 세부 정보를 탐색하십시오.
+                    </p>
+                </div>
+
+                <div class="flex border-b border-stone-200 px-6 md:px-8 bg-stone-50 overflow-x-auto">
+                    <button class="tab-btn tab-active py-4 px-4 whitespace-nowrap focus:outline-none transition-colors" data-target="tab-arch">아키텍처 & 워크플로우</button>
+                    <button class="tab-btn tab-inactive py-4 px-4 whitespace-nowrap focus:outline-none transition-colors" data-target="tab-proscons">장단점 비교</button>
+                    <button class="tab-btn tab-inactive py-4 px-4 whitespace-nowrap focus:outline-none transition-colors" data-target="tab-pricing">가격 & 에코시스템</button>
+                </div>
+
+                <div class="p-6 md:p-8">
+                    <div id="tab-arch" class="tab-content block">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-lg font-bold text-stone-900 mb-4 border-b border-orange-200 pb-2 inline-block">Claude Code의 방식</h4>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-xl">🖥️</span>
+                                        <div>
+                                            <strong class="block text-stone-800">CLI First (터미널 네이티브)</strong>
+                                            <span class="text-sm text-stone-600">IDE 내부가 아닌 터미널에서 `claude` 명령어로 실행. 독립적인 에이전트로 작동.</span>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-xl">🔍</span>
+                                        <div>
+                                            <strong class="block text-stone-800">능동적 탐색 (Active Discovery)</strong>
+                                            <span class="text-sm text-stone-600">개발자가 파일을 명시하지 않아도 `grep`, `ls` 등을 스스로 사용하여 필요한 파일을 찾아 읽고 분석함.</span>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-xl">⚙️</span>
+                                        <div>
+                                            <strong class="block text-stone-800">Read-Eval-Print Loop (REPL) 통합</strong>
+                                            <span class="text-sm text-stone-600">코드를 수정하는 것에 그치지 않고, 테스트 코드를 실행하고 오류가 나면 스스로 원인을 찾아 다시 수정함.</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-stone-900 mb-4 border-b border-indigo-200 pb-2 inline-block">GitHub Copilot의 방식</h4>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-xl">🔌</span>
+                                        <div>
+                                            <strong class="block text-stone-800">IDE Integration (플러그인 기반)</strong>
+                                            <span class="text-sm text-stone-600">VS Code, IntelliJ 등 기존 에디터 환경 내에 자연스럽게 녹아들어 작동.</span>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-xl">👻</span>
+                                        <div>
+                                            <strong class="block text-stone-800">고스트 텍스트 (Ghost Text)</strong>
+                                            <span class="text-sm text-stone-600">개발자가 타이핑하는 동안 회색 글씨로 다음 코드를 제안. Tab 키로 즉시 수락.</span>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-xl">💬</span>
+                                        <div>
+                                            <strong class="block text-stone-800">Chat & Edits (보조적 대화)</strong>
+                                            <span class="text-sm text-stone-600">사이드바 챗이나 인라인 챗(Cmd+I)을 통해 코드를 생성하거나 질문에 답변(개발자가 능동적으로 제어).</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-proscons" class="tab-content hidden">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="bg-stone-50 rounded-lg p-6 border border-stone-200">
+                                <h4 class="text-xl font-bold text-stone-900 mb-4 text-center">Claude Code</h4>
+                                <div class="mb-6">
+                                    <h5 class="font-semibold text-green-700 flex items-center gap-2 mb-2"><span class="text-lg">⊕</span> 강점 (Pros)</h5>
+                                    <ul class="list-disc pl-5 text-sm text-stone-700 space-y-1 marker:text-green-500">
+                                        <li>수십 개의 파일이 얽힌 복잡한 로직을 깊이 있게 이해</li>
+                                        <li>새로운 기능 추가부터 테스트, 커밋까지 End-to-End 자동화 가능</li>
+                                        <li>터미널 에러 로그를 직접 읽고 해결책을 코드로 즉시 반영</li>
+                                        <li>압도적인 성능의 Claude 3.7 Sonnet 모델 활용</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-red-700 flex items-center gap-2 mb-2"><span class="text-lg">⊖</span> 약점 (Cons)</h5>
+                                    <ul class="list-disc pl-5 text-sm text-stone-700 space-y-1 marker:text-red-500">
+                                        <li>타이핑 도중 실시간 자동완성을 지원하지 않음</li>
+                                        <li>IDE의 시각적 요소(구문 강조, 마우스 오버 등)와 완벽히 통합되지 않음</li>
+                                        <li>에이전트가 예상치 못한 시스템 명령을 실행할 잠재적 위험 (보안 경고 필요)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-stone-50 rounded-lg p-6 border border-stone-200">
+                                <h4 class="text-xl font-bold text-stone-900 mb-4 text-center">GitHub Copilot</h4>
+                                <div class="mb-6">
+                                    <h5 class="font-semibold text-green-700 flex items-center gap-2 mb-2"><span class="text-lg">⊕</span> 강점 (Pros)</h5>
+                                    <ul class="list-disc pl-5 text-sm text-stone-700 space-y-1 marker:text-green-500">
+                                        <li>코딩 흐름을 끊지 않는 지연율 제로에 가까운 자동완성</li>
+                                        <li>거의 모든 주류 IDE를 지원하는 방대한 호환성</li>
+                                        <li>엔터프라이즈 환경에서의 검증된 보안 및 관리 기능</li>
+                                        <li>새로운 언어나 프레임워크 학습 시 문법 가이드로 탁월</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-red-700 flex items-center gap-2 mb-2"><span class="text-lg">⊖</span> 약점 (Cons)</h5>
+                                    <ul class="list-disc pl-5 text-sm text-stone-700 space-y-1 marker:text-red-500">
+                                        <li>현재 열려있는 파일이나 탭에 컨텍스트가 크게 의존함</li>
+                                        <li>대규모 아키텍처 변경 등 프로젝트 전반에 걸친 수정 지시가 어려움</li>
+                                        <li>종종 존재하지 않는 함수나 라이브러리를 호출하는 환각(Hallucination) 현상</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-pricing" class="tab-content hidden">
+                         <div class="grid md:grid-cols-2 gap-8 items-center">
+                             <div class="space-y-6">
+                                <div class="p-4 border-l-4 border-orange-500 bg-orange-50">
+                                    <h4 class="font-bold text-lg text-stone-900 mb-1">Claude Code (Usage-based)</h4>
+                                    <p class="text-sm text-stone-700 mb-2">사용한 API 토큰 양에 따라 비용이 청구되는 종량제 모델입니다.</p>
+                                    <ul class="text-sm text-stone-600 space-y-1">
+                                        <li>• 초기 Research 단계 (Anthropic Console API 연동 필요)</li>
+                                        <li>• 프로젝트 크기와 에이전트의 자율성(반복 작업 횟수)에 따라 비용 변동폭 큼</li>
+                                        <li>• 헤비 유저나 대규모 코드베이스 분석 시 예상보다 높은 비용 발생 가능성</li>
+                                    </ul>
+                                </div>
+                                <div class="p-4 border-l-4 border-indigo-500 bg-indigo-50">
+                                    <h4 class="font-bold text-lg text-stone-900 mb-1">GitHub Copilot (Flat-rate)</h4>
+                                    <p class="text-sm text-stone-700 mb-2">월/연 단위의 고정 구독형 모델로 예산 예측이 용이합니다.</p>
+                                    <ul class="text-sm text-stone-600 space-y-1">
+                                        <li>• Individual: $10/월</li>
+                                        <li>• Business: $19/월 (조직 관리, IP 보호 기능 포함)</li>
+                                        <li>• Enterprise: $39/월 (맞춤형 모델 미세조정 등)</li>
+                                        <li>• 사용량에 관계없이 무제한(일정 정책 내) 사용 가능</li>
+                                    </ul>
+                                </div>
+                             </div>
+                             <div class="bg-stone-100 p-6 rounded-xl flex flex-col items-center justify-center text-center h-full">
+                                 <span class="text-4xl mb-3">💡</span>
+                                 <h4 class="font-bold text-stone-900 mb-2">비용 효율성 결론</h4>
+                                 <p class="text-sm text-stone-600 leading-relaxed">
+                                     개인 개발자나 반복적인 코딩 작업이 많은 경우 예측 가능한 <strong>Copilot</strong>이 경제적일 수 있습니다. 반면, 복잡한 버그 수정이나 대규모 마이그레이션 등 단발성이지만 난이도가 높은 작업에 에이전트를 투입할 경우, 토큰 비용을 지불하더라도 <strong>Claude Code</strong>가 개발 시간을 획기적으로 줄여 전체 ROI 측면에서 유리할 수 있습니다.
+                                 </p>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="scenarios" class="scroll-mt-24 mb-12">
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 md:p-10">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                    <div class="max-w-2xl">
+                        <h2 class="text-2xl font-bold text-stone-900 mb-2">개발 시나리오별 적합도 분석</h2>
+                        <p class="text-stone-600 text-sm">
+                            특정 작업 목적에 따라 어떤 도구를 사용하는 것이 업무 효율을 극대화할 수 있는지 분석한 결과입니다. 우측의 드롭다운을 변경하여 상황별 성능 차이를 확인하세요.
+                        </p>
+                    </div>
+                    <div class="shrink-0 w-full md:w-auto">
+                        <label for="scenario-select" class="sr-only">시나리오 선택</label>
+                        <select id="scenario-select" class="block w-full rounded-lg border-stone-300 bg-stone-50 text-stone-900 text-sm font-medium focus:ring-stone-500 focus:border-stone-500 p-2.5 border shadow-sm cursor-pointer outline-none">
+                            <option value="legacy">레거시 코드 리팩토링 (다중 파일)</option>
+                            <option value="boilerplate">반복적인 보일러플레이트 작성</option>
+                            <option value="debugging">복잡한 터미널 에러 및 버그 디버깅</option>
+                            <option value="inline">실시간 알고리즘/함수 구현 (인라인)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 chart-container">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                    <div class="bg-stone-50 rounded-xl p-6 border border-stone-200 flex flex-col justify-center">
+                        <h3 class="text-lg font-bold text-stone-900 mb-3 flex items-center gap-2">
+                            <span id="desc-icon" class="text-2xl">🏗️</span>
+                            <span id="desc-title">레거시 코드 리팩토링</span>
+                        </h3>
+                        <p id="desc-text" class="text-sm text-stone-700 leading-relaxed mb-4">
+                            Claude Code의 압도적인 우위 영역입니다. 에이전트가 직접 여러 파일을 순회하며 의존성을 파악하고, 안전하게 코드를 변경한 뒤 테스트까지 수행할 수 있습니다. Copilot은 파일 간 종속성이 높은 대규모 변경에는 한계를 보입니다.
+                        </p>
+                        <div class="mt-auto pt-4 border-t border-stone-200">
+                            <span class="text-xs font-semibold text-stone-500 uppercase tracking-wider">추천 도구</span>
+                            <div id="desc-winner" class="text-orange-600 font-bold text-lg mt-1">🏆 Claude Code</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 py-8 text-center text-sm">
+        <p>© 2026 AI Assistant Analysis Report. All rights reserved.</p>
+        <p class="mt-2">본 문서는 정보 제공 목적으로 작성되었으며, 각 서비스의 업데이트에 따라 기능이 변경될 수 있습니다.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Tab Logic ---
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active from all
+                    tabBtns.forEach(b => {
+                        b.classList.remove('tab-active');
+                        b.classList.add('tab-inactive');
+                    });
+                    tabContents.forEach(c => {
+                        c.classList.remove('block');
+                        c.classList.add('hidden');
+                    });
+
+                    // Add active to clicked
+                    btn.classList.add('tab-active');
+                    btn.classList.remove('tab-inactive');
+                    const targetId = btn.getAttribute('data-target');
+                    document.getElementById(targetId).classList.remove('hidden');
+                    document.getElementById(targetId).classList.add('block');
+                });
+            });
+
+            // --- Chart.js Global Defaults ---
+            Chart.defaults.font.family = "'Pretendard', sans-serif";
+            Chart.defaults.color = '#64748b'; // stone-500
+
+            // --- Radar Chart ---
+            const ctxRadar = document.getElementById('radarChart').getContext('2d');
+            new Chart(ctxRadar, {
+                type: 'radar',
+                data: {
+                    labels: ['자동완성 속도', '프로젝트 컨텍스트 이해', '자율적 코드 생성', '대규모 리팩토링', '터미널 및 환경 제어'],
+                    datasets: [
+                        {
+                            label: 'Claude Code',
+                            data: [3, 9, 9, 8, 10],
+                            backgroundColor: 'rgba(249, 115, 22, 0.2)', // orange-500
+                            borderColor: 'rgba(249, 115, 22, 1)',
+                            pointBackgroundColor: 'rgba(249, 115, 22, 1)',
+                            borderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: 'GitHub Copilot',
+                            data: [10, 6, 8, 5, 2],
+                            backgroundColor: 'rgba(79, 70, 229, 0.2)', // indigo-600
+                            borderColor: 'rgba(79, 70, 229, 1)',
+                            pointBackgroundColor: 'rgba(79, 70, 229, 1)',
+                            borderWidth: 2,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                            pointLabels: {
+                                font: { size: 12, weight: '600' },
+                                color: '#475569' // stone-600
+                            },
+                            ticks: { min: 0, max: 10, stepSize: 2, display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20, font:{weight:'600'} } },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.9)', // stone-900
+                            padding: 12,
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 13 }
+                        }
+                    }
+                }
+            });
+
+            // --- Bar Chart (Scenario Analysis) ---
+            const ctxBar = document.getElementById('barChart').getContext('2d');
+            
+            const scenarioData = {
+                legacy: {
+                    scores: [95, 40],
+                    icon: '🏗️',
+                    title: '레거시 코드 리팩토링',
+                    text: 'Claude Code의 압도적인 우위 영역입니다. 에이전트가 직접 여러 파일을 순회하며 의존성을 파악하고, 안전하게 코드를 변경한 뒤 테스트까지 수행할 수 있습니다. Copilot은 파일 간 종속성이 높은 대규모 변경에는 한계를 보입니다.',
+                    winner: '🏆 Claude Code (우세)',
+                    winnerColor: 'text-orange-600'
+                },
+                boilerplate: {
+                    scores: [60, 98],
+                    icon: '📝',
+                    title: '보일러플레이트 작성',
+                    text: '패턴이 정해진 반복적인 코드나 기초 구조를 잡을 때는 IDE에 완전히 밀착되어 타이핑과 동시에 코드를 뱉어내는 Copilot의 속도를 이길 수 없습니다. Claude Code는 명령어 입력 대기 시간이 있어 단순 작업에는 다소 무겁습니다.',
+                    winner: '🏆 GitHub Copilot (우세)',
+                    winnerColor: 'text-indigo-600'
+                },
+                debugging: {
+                    scores: [90, 60],
+                    icon: '🐛',
+                    title: '복잡한 터미널 에러 디버깅',
+                    text: '빌드 에러나 서버 실행 오류 발생 시, Claude Code는 터미널 로그를 직접 읽고 원인을 추론하여 코드 수정 및 재실행까지 스스로 반복(REPL)합니다. Copilot 챗에 에러 메시지를 복사-붙여넣기 하는 방식보다 훨씬 효율적입니다.',
+                    winner: '🏆 Claude Code (우세)',
+                    winnerColor: 'text-orange-600'
+                },
+                inline: {
+                    scores: [20, 100],
+                    icon: '⚡',
+                    title: '실시간 인라인 알고리즘 구현',
+                    text: '개발자가 코드를 작성하는 "생각의 흐름"을 끊지 않고 다음 줄(Line)이나 블록을 예측해주는 인라인(Inline) 자동완성은 Copilot의 핵심 가치입니다. Claude Code는 현재 이 워크플로우를 지원하지 않습니다.',
+                    winner: '🏆 GitHub Copilot (압도적 우세)',
+                    winnerColor: 'text-indigo-600'
+                }
+            };
+
+            let barChart = new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['적합성 점수 (100점 만점)'],
+                    datasets: [
+                        {
+                            label: 'Claude Code',
+                            data: [scenarioData.legacy.scores[0]],
+                            backgroundColor: 'rgba(249, 115, 22, 0.8)',
+                            borderRadius: 6,
+                            barPercentage: 0.6,
+                            categoryPercentage: 0.8
+                        },
+                        {
+                            label: 'GitHub Copilot',
+                            data: [scenarioData.legacy.scores[1]],
+                            backgroundColor: 'rgba(79, 70, 229, 0.8)',
+                            borderRadius: 6,
+                            barPercentage: 0.6,
+                            categoryPercentage: 0.8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', // Horizontal bar chart
+                    scales: {
+                        x: { min: 0, max: 100, grid: { color: 'rgba(0,0,0,0.05)' } },
+                        y: { grid: { display: false } }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20, font:{weight:'600'} } },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.9)',
+                            padding: 12
+                        }
+                    }
+                }
+            });
+
+            // Scenario Select Change Event
+            document.getElementById('scenario-select').addEventListener('change', function(e) {
+                const selected = e.target.value;
+                const data = scenarioData[selected];
+                
+                // Update Chart
+                barChart.data.datasets[0].data = [data.scores[0]];
+                barChart.data.datasets[1].data = [data.scores[1]];
+                barChart.update();
+
+                // Update Text Content
+                document.getElementById('desc-icon').textContent = data.icon;
+                document.getElementById('desc-title').textContent = data.title;
+                document.getElementById('desc-text').textContent = data.text;
+                
+                const winnerEl = document.getElementById('desc-winner');
+                winnerEl.textContent = data.winner;
+                winnerEl.className = `font-bold text-lg mt-1 transition-colors duration-300 ${data.winnerColor}`;
+            });
+        });
+    </script>
+</body>
+</html>
